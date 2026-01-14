@@ -36,7 +36,7 @@ export default function Navigation() {
       >
         <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="relative z-50">
+          <Link href="/" className="relative z-50 flex items-baseline gap-1.5">
             <motion.span
               className="text-xl font-semibold tracking-tight text-green-primary"
               initial={{ opacity: 0 }}
@@ -44,6 +44,14 @@ export default function Navigation() {
               transition={{ duration: 0.5 }}
             >
               권승주
+            </motion.span>
+            <motion.span
+              className="text-xs text-green-secondary tracking-wide"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              KIIARA
             </motion.span>
           </Link>
 

@@ -25,7 +25,10 @@ export default function SeungjuKwonPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-3xl md:text-5xl font-light text-text-primary leading-tight"
           >
-            권승주
+            <span className="inline-flex items-baseline gap-2">
+              권승주
+              <span className="text-lg md:text-xl text-green-secondary font-normal">KIIARA</span>
+            </span>
             <br />
             <span className="text-green-primary">눈썹·수지 인상 설계</span>
           </motion.h1>
