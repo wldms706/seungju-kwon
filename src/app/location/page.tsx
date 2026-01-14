@@ -1,0 +1,143 @@
+'use client';
+
+import { motion } from 'framer-motion';
+import Section from '@/components/Section';
+import Button from '@/components/Button';
+
+export default function LocationPage() {
+  return (
+    <>
+      {/* Hero */}
+      <section className="pt-32 pb-20 px-6 bg-gradient-to-b from-pink-light/30 to-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-sm tracking-widest text-green-secondary mb-4"
+          >
+            LOCATION
+          </motion.p>
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-3xl md:text-5xl font-light text-text-primary leading-tight"
+          >
+            천안 불당동,
+            <br />
+            조용하게 정리하는 공간
+          </motion.h1>
+        </div>
+      </section>
+
+      {/* Main Content */}
+      <Section background="white">
+        <div className="max-w-2xl mx-auto text-center">
+          <motion.p
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-lg text-text-secondary leading-loose mb-16"
+          >
+            천안 불당동에 위치한 공간에서
+            <br />
+            복잡한 설명 없이,
+            <br />
+            차분하게 얼굴을 정리합니다.
+            <br /><br />
+            시술은 짧지만
+            <br />
+            결과는 오래 남기 위해
+            <br />
+            모든 과정은 안정적으로 진행됩니다.
+          </motion.p>
+        </div>
+      </Section>
+
+      {/* Space Image Placeholder */}
+      <Section background="pink">
+        <div className="max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="aspect-[4/3] bg-white flex items-center justify-center"
+            >
+              <p className="text-text-secondary/50 text-sm">공간 이미지 1</p>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="aspect-[4/3] bg-white flex items-center justify-center"
+            >
+              <p className="text-text-secondary/50 text-sm">공간 이미지 2</p>
+            </motion.div>
+          </div>
+        </div>
+      </Section>
+
+      {/* Location Info */}
+      <Section background="white">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-12">
+            <p className="text-sm tracking-widest text-green-secondary mb-4">INFO</p>
+            <h2 className="text-2xl md:text-3xl font-light text-text-primary">
+              오시는 길
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-pink-light/30 p-8"
+            >
+              <h3 className="text-lg font-medium text-green-primary mb-4">주소</h3>
+              <p className="text-text-secondary leading-relaxed">
+                충청남도 천안시 서북구 불당동
+                <br />
+                <span className="text-sm text-text-secondary/70">(상세 주소는 예약 시 안내)</span>
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              viewport={{ once: true }}
+              className="bg-pink-light/30 p-8"
+            >
+              <h3 className="text-lg font-medium text-green-primary mb-4">운영 안내</h3>
+              <p className="text-text-secondary leading-relaxed">
+                완전 예약제로 운영됩니다.
+                <br />
+                <span className="text-sm text-text-secondary/70">상담 후 일정 조율</span>
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </Section>
+
+      {/* CTA */}
+      <Section background="green">
+        <div className="text-center">
+          <h2 className="text-2xl md:text-3xl font-light text-white mb-8">
+            방문 상담을
+            <br />
+            원하신다면
+          </h2>
+          <Button href="/contact" variant="secondary" size="lg">
+            상담 문의
+          </Button>
+        </div>
+      </Section>
+    </>
+  );
+}

@@ -1,0 +1,52 @@
+'use client';
+
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+
+interface ButtonProps {
+  children: React.ReactNode;
+  href?: string;
+  variant?: 'primary' | 'secondary' | 'outline';
+  size?: 'sm' | 'md' | 'lg';
+  className?: string;
+  onClick?: () => void;
+}
+
+export default function Button({
+  children,
+  href,
+  variant = 'primary',
+  size = 'md',
+  className = '',
+  onClick,
+}: ButtonProps) {
+  const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-300 tracking-wide';
+
+  const variants = {
+    primary: 'bg-green-primary text-white hover:bg-green-primary/90',
+    secondary: 'bg-pink-primary text-white hover:bg-pink-primary/90',
+    outline: 'border border-green-primary text-green-primary hover:bg-green-primary hover:text-white',
+  };
+
+  const sizes = {
+    sm: 'px-4 py-2 text-sm',
+    md: 'px-6 py-3 text-sm',
+    lg: 'px-8 py-4 text-base',
+  };
+
+  const combinedClassName = `${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`;
+
+  const MotionComponent = href ? motion.create(Link) : motion.button;
+
+  return (
+    <MotionComponent
+      href={href || ''}
+      onClick={onClick}
+      className={combinedClassName}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+    >
+      {children}
+    </MotionComponent>
+  );
+}

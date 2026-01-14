@@ -1,26 +1,99 @@
 @import "tailwindcss";
 
 :root {
+  /* Brand Colors */
+  --color-green-primary: #2F5D50;
+  --color-green-secondary: #6F8F86;
+  --color-pink-primary: #C48A9A;
+  --color-pink-light: #F2E6EA;
+
+  /* Text Colors */
+  --color-text-primary: #1E1E1E;
+  --color-text-secondary: #6B6B6B;
+
+  /* UI Colors */
+  --color-line: #E6E6E6;
+  --color-white: #FFFFFF;
+
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1E1E1E;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-green-primary: #2F5D50;
+  --color-green-secondary: #6F8F86;
+  --color-pink-primary: #C48A9A;
+  --color-pink-light: #F2E6EA;
+  --color-text-primary: #1E1E1E;
+  --color-text-secondary: #6B6B6B;
+  --color-line: #E6E6E6;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.7;
+  letter-spacing: -0.02em;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-pink-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-green-secondary);
+  border-radius: 3px;
+}
+
+/* Selection */
+::selection {
+  background: var(--color-pink-primary);
+  color: white;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.8s ease-out forwards;
 }
