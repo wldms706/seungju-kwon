@@ -398,8 +398,9 @@ export default function Home() {
               입술은 더 조심해야 합니다
             </p>
             <p className="text-text-secondary leading-relaxed mb-6">
-              입술은 눈썹보다 더 미묘한 영역입니다.
-              조금만 과해도 인상이 단번에 바뀝니다.
+              쌩얼에도 괜히 예뻐 보이는 입술,
+              <br />
+              립 바르면 더 잘 어울립니다.
             </p>
             <ul className="text-sm text-text-secondary space-y-2 mb-8">
               <li>• 불필요한 색은 줄이고</li>
