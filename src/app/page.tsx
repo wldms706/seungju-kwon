@@ -52,7 +52,9 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-3xl md:text-5xl lg:text-6xl font-light leading-tight mb-8 text-white"
           >
-            천안 눈썹문신 전문, <span className="font-medium">키아라 천안</span>
+            인상이 달라지면,
+            <br />
+            <span className="font-medium">일이 풀립니다</span>
           </motion.h1>
 
           <motion.p
@@ -61,9 +63,9 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="text-base md:text-lg text-white/90 max-w-xl mx-auto mb-12 leading-relaxed"
           >
-            키아라 천안은 천안에서 자연결 눈썹문신과 입술 반영구를 전문으로 하는 프라이빗 스튜디오입니다.
+            쌩얼이 달라지면 메이크업도 달라집니다.
             <br />
-            과하지 않게, 시간이 지나도 어색하지 않은 결과를 기준으로 디자인합니다.
+            과하지 않게, 오래 봐도 편안한 인상을 만듭니다.
           </motion.p>
 
           <motion.div
@@ -79,7 +81,7 @@ export default function Home() {
               href="/eyebrow"
               className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-transparent text-white border border-white/50 font-semibold hover:bg-white/10 transition-colors"
             >
-              작업 방식 보기
+              before &amp; after 보기
             </a>
           </motion.div>
         </div>
@@ -164,22 +166,20 @@ export default function Home() {
             <br />
             과하지 않다는 기준은 분명합니다.
             <br /><br />
-            권승주는 트렌드보다 얼굴의 구조를 먼저 보고,
+            트렌드보다 얼굴의 구조를 먼저 보고,
             <br />
             유행보다 시간이 지나도 남는 인상을 선택합니다.
             <br /><br />
-            눈썹과 수지는
-            <br />
-            &apos;티가 나면 실패&apos;인 영역이기 때문에
+            티가 나면 실패인 영역이기 때문에
             <br />
             더욱 판단이 중요합니다.
           </p>
 
           <blockquote className="border-l-4 border-pink-primary pl-6 py-4 bg-pink-light/30">
             <p className="text-lg text-text-primary italic">
-              "예뻐 보이는 건 순간이지만,
+              &quot;예뻐 보이는 건 순간이지만,
               <br />
-              어색하지 않은 건 오래갑니다."
+              어색하지 않은 건 오래갑니다.&quot;
             </p>
           </blockquote>
         </div>
@@ -188,7 +188,7 @@ export default function Home() {
       {/* Face Impression Design */}
       <section
         className="w-full border-t border-neutral-200 bg-white"
-        aria-label="입술·눈썹·뷰러펌"
+        aria-label="인상 설계"
       >
         <div className="mx-auto max-w-5xl px-4 py-16">
           {/* 헤드 카피 */}
@@ -200,7 +200,7 @@ export default function Home() {
               viewport={{ once: true }}
               className="mb-3 text-sm tracking-wide text-neutral-500"
             >
-              FACE IMPRESSION DESIGN
+              FACE IMPRESSION
             </motion.p>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -209,7 +209,8 @@ export default function Home() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl font-semibold leading-tight text-neutral-900"
             >
-              여기서 받으면,<br />
+              여기서 받으면,
+              <br />
               인상이 정리됩니다
             </motion.h2>
             <motion.p
@@ -219,9 +220,10 @@ export default function Home() {
               viewport={{ once: true }}
               className="mt-4 text-base sm:text-lg text-neutral-600"
             >
-              예뻐 보이는 걸 넘어서,<br />
+              예뻐 보이는 걸 넘어서,
+              <br />
               <strong className="text-neutral-900">
-                &quot;사람 인상 자체가 좋아 보이게&quot;
+                사람 인상 자체가 좋아 보이게
               </strong>{' '}
               만드는 기준
             </motion.p>
@@ -237,11 +239,13 @@ export default function Home() {
               className="rounded-2xl border border-neutral-200 p-6"
             >
               <h3 className="text-lg font-semibold text-neutral-900">
-                입술 · 눈썹 · 눈매를<br />한 번에 봅니다
+                전체 인상을
+                <br />
+                한 번에 봅니다
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-neutral-600">
-                하나만 잘한다고 인상이 바뀌지 않습니다.<br />
-                권승주는 입술, 눈썹, 눈매를<br />
+                하나만 잘한다고 인상이 바뀌지 않습니다.
+                <br />
                 <strong className="text-neutral-900">같은 얼굴 안에서 함께 판단</strong>합니다.
               </p>
             </motion.div>
@@ -254,11 +258,15 @@ export default function Home() {
               className="rounded-2xl border border-neutral-200 p-6"
             >
               <h3 className="text-lg font-semibold text-neutral-900">
-                유행보다<br />&apos;지금 얼굴&apos;
+                유행보다
+                <br />
+                지금 얼굴
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-neutral-600">
-                예쁜 디자인보다 중요한 건<br />
-                지금 얼굴에 어울리는지 여부입니다.<br />
+                예쁜 디자인보다 중요한 건
+                <br />
+                지금 얼굴에 어울리는지 여부입니다.
+                <br />
                 그래서 과한 선택은 처음부터 배제합니다.
               </p>
             </motion.div>
@@ -271,11 +279,15 @@ export default function Home() {
               className="rounded-2xl border border-neutral-200 p-6"
             >
               <h3 className="text-lg font-semibold text-neutral-900">
-                시간이 지나도<br />어색하지 않게
+                시간이 지나도
+                <br />
+                어색하지 않게
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-neutral-600">
-                처음보다 몇 달 뒤가 더 중요합니다.<br />
-                오래 봐도 편안한 인상을 기준으로<br />
+                처음보다 몇 달 뒤가 더 중요합니다.
+                <br />
+                오래 봐도 편안한 인상을 기준으로
+                <br />
                 결과를 남깁니다.
               </p>
             </motion.div>
@@ -290,15 +302,18 @@ export default function Home() {
             className="mt-14 rounded-3xl bg-neutral-50 p-8 text-center"
           >
             <p className="text-sm tracking-wide text-neutral-500">
-              WHY SEUNG JOO KWON
+              WHY HERE
             </p>
             <h3 className="mt-3 text-2xl font-semibold text-neutral-900">
-              키아라 천안 승주원장에게 받아야하는 이유
+              여기서 받아야 하는 이유
             </h3>
             <p className="mx-auto mt-4 max-w-2xl text-sm sm:text-base leading-relaxed text-neutral-600">
-              디자인을 &apos;잘하는 사람&apos;은 많습니다.<br />
-              하지만 <strong className="text-neutral-900">인상을 판단할 수 있는 사람</strong>은 많지 않습니다.<br /><br />
-              저는 기술보다 먼저 얼굴을 보고,<br />
+              잘하는 곳은 많습니다.
+              <br />
+              하지만 <strong className="text-neutral-900">인상을 판단할 수 있는 곳</strong>은 많지 않습니다.
+              <br /><br />
+              기술보다 먼저 얼굴을 보고,
+              <br />
               지금보다 더 좋아질 지점이 있는지부터 판단합니다.
             </p>
           </motion.div>
@@ -319,16 +334,16 @@ export default function Home() {
       <Section background="pink">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <p className="text-sm tracking-widest text-green-secondary mb-4">ARTIST PROFILE</p>
+            <p className="text-sm tracking-widest text-green-secondary mb-4">ARTIST</p>
             <h2 className="text-2xl md:text-4xl font-light text-text-primary mb-2">
-              권승주 원장
+              권승주
               <br />
-              <span className="text-green-primary">눈썹·수지 인상 설계</span>
+              <span className="text-green-primary">인상을 자연스럽게 바꿉니다</span>
             </h2>
             <p className="text-xs text-text-secondary/70 mb-8">키아라 천안</p>
 
             <p className="text-text-secondary leading-loose mb-8">
-              오래 시술을 해오며 알게 된 건 하나였습니다.
+              오래 일하며 알게 된 건 하나였습니다.
               <br />
               사람들은 디자인을 기억하지 않고
               <br />
@@ -336,7 +351,7 @@ export default function Home() {
               <br /><br />
               그래서 저는
               <br />
-              손보다 눈이 먼저 가는 시술을 합니다.
+              손보다 눈이 먼저 갑니다.
             </p>
 
             <Button href="/seungju-kwon" variant="outline">
@@ -357,9 +372,9 @@ export default function Home() {
       {/* Services Preview */}
       <Section background="white">
         <div className="text-center mb-16">
-          <p className="text-sm tracking-widest text-green-secondary mb-4">SERVICES</p>
+          <p className="text-sm tracking-widest text-green-secondary mb-4">MENU</p>
           <h2 className="text-2xl md:text-4xl font-light text-text-primary">
-            전문 시술
+            무엇을 바꿀 수 있나요
           </h2>
         </div>
 
@@ -369,22 +384,22 @@ export default function Home() {
             whileHover={{ y: -5 }}
             className="bg-white border border-line p-8 md:p-12"
           >
-            <h3 className="text-xl font-medium text-green-primary mb-4">EYEBROW</h3>
+            <h3 className="text-xl font-medium text-green-primary mb-4">눈썹</h3>
             <p className="text-2xl text-text-primary mb-6">
-              눈썹은 얼굴의 지붕입니다
+              쌩얼도 화장한 것처럼
             </p>
             <p className="text-text-secondary leading-relaxed mb-6">
-              눈썹 하나로 사람이 달라 보이는 이유는
-              그 위치와 방향이 얼굴 전체 인상을
-              결정하기 때문입니다.
+              눈썹 하나로 인상이 달라집니다.
+              <br />
+              메이크업 없이도 정돈된 얼굴을 만듭니다.
             </p>
             <ul className="text-sm text-text-secondary space-y-2 mb-8">
               <li>• 각도는 인상을 바꾸고</li>
               <li>• 두께는 신뢰를 만들며</li>
-              <li>• 컬러는 나이를 결정합니다</li>
+              <li>• 컬러는 분위기를 결정합니다</li>
             </ul>
             <Button href="/eyebrow" variant="outline" size="sm">
-              작품 감상하기
+              before &amp; after 보기
             </Button>
           </motion.div>
 
@@ -393,22 +408,22 @@ export default function Home() {
             whileHover={{ y: -5 }}
             className="bg-white border border-line p-8 md:p-12"
           >
-            <h3 className="text-xl font-medium text-pink-primary mb-4">LIP BLUSH</h3>
+            <h3 className="text-xl font-medium text-pink-primary mb-4">입술</h3>
             <p className="text-2xl text-text-primary mb-6">
-              입술은 더 조심해야 합니다
+              립 바르면 더 잘 어울리는 입술
             </p>
             <p className="text-text-secondary leading-relaxed mb-6">
               쌩얼에도 괜히 예뻐 보이는 입술,
               <br />
-              립 바르면 더 잘 어울립니다.
+              메이크업이 완성되는 느낌을 만듭니다.
             </p>
             <ul className="text-sm text-text-secondary space-y-2 mb-8">
-              <li>• 불필요한 색은 줄이고</li>
+              <li>• 불필요한 색은 정리하고</li>
               <li>• 피부 톤에 맞춰 정돈하고</li>
               <li>• 시간이 지나도 부담 없는 상태로</li>
             </ul>
             <Button href="/lip-blush" variant="secondary" size="sm">
-              작품 감상하기
+              before &amp; after 보기
             </Button>
           </motion.div>
         </div>
@@ -448,7 +463,7 @@ export default function Home() {
       {/* Recommended For */}
       <Section background="pink">
         <div className="text-center mb-12">
-          <p className="text-sm tracking-widest text-green-secondary mb-4">RECOMMENDED FOR</p>
+          <p className="text-sm tracking-widest text-green-secondary mb-4">FOR YOU</p>
           <h2 className="text-2xl md:text-4xl font-light text-text-primary">
             이런 분께 추천합니다
           </h2>
@@ -456,10 +471,10 @@ export default function Home() {
 
         <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
           {[
-            '눈썹·수지가 늘 마음에 걸리는 분',
+            '쌩얼이 늘 마음에 걸리는 분',
             '나이 들어 보인다는 말을 듣는 분',
             '사진 찍을 때 인상이 아쉬운 분',
-            '유행보다 \'지금의 나\'에 맞는 선택을 하고 싶은 분',
+            '메이크업 없이도 정돈된 얼굴을 원하는 분',
           ].map((item, index) => (
             <motion.div
               key={index}
@@ -484,8 +499,6 @@ export default function Home() {
             지금의 얼굴을
             <br />
             조금 더 정리하고 싶다면
-            <br />
-            권승주의 기준으로 판단해드립니다.
           </h2>
           <Button href="/contact" variant="secondary" size="lg">
             상담 문의

@@ -17,7 +17,7 @@ export default function SeungjuKwonPage() {
             transition={{ duration: 0.6 }}
             className="text-sm tracking-widest text-green-secondary mb-4"
           >
-            ARTIST PROFILE
+            ARTIST
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -61,7 +61,7 @@ export default function SeungjuKwonPage() {
             viewport={{ once: true }}
           >
             <p className="text-lg text-text-secondary leading-loose mb-8">
-              오래 시술을 해오며 알게 된 건 하나였습니다.
+              오래 일하며 알게 된 건 하나였습니다.
               <br />
               사람들은 디자인을 기억하지 않고
               <br />
@@ -69,7 +69,7 @@ export default function SeungjuKwonPage() {
               <br /><br />
               그래서 저는
               <br />
-              손보다 눈이 먼저 가는 시술을 합니다.
+              손보다 눈이 먼저 갑니다.
               <br /><br />
               얼굴을 보고,
               <br />
@@ -87,15 +87,15 @@ export default function SeungjuKwonPage() {
           <div className="text-center mb-12">
             <p className="text-sm tracking-widest text-green-secondary mb-4">PHILOSOPHY</p>
             <h2 className="text-2xl md:text-3xl font-light text-text-primary">
-              시술 철학
+              일하는 방식
             </h2>
           </div>
 
           <div className="space-y-6">
             {[
-              '과함을 피하는 이유',
-              '유행을 바로 쓰지 않는 이유',
-              '얼굴마다 다른 기준을 적용하는 이유',
+              '과한 건 처음부터 배제합니다',
+              '유행보다 지금 얼굴에 맞는지를 봅니다',
+              '사람마다 다른 기준을 적용합니다',
             ].map((item, index) => (
               <motion.div
                 key={index}
@@ -122,7 +122,7 @@ export default function SeungjuKwonPage() {
           >
             이 모든 판단의 시작은
             <br />
-            <span className="text-green-primary font-medium">"이 얼굴에 지금 필요한가?"</span> 입니다.
+            <span className="text-green-primary font-medium">&quot;이 얼굴에 지금 필요한가?&quot;</span> 입니다.
           </motion.p>
         </div>
       </Section>
@@ -131,9 +131,7 @@ export default function SeungjuKwonPage() {
       <Section background="white">
         <div className="max-w-2xl mx-auto text-center">
           <p className="text-sm text-text-secondary/70">
-            권승주는 키아라 체인에서의 경험을 바탕으로
-            <br />
-            현재는 개인 기준 중심의 시술을 진행합니다.
+            키아라 천안에서 일하고 있습니다.
           </p>
         </div>
       </Section>
@@ -142,9 +140,9 @@ export default function SeungjuKwonPage() {
       <Section background="green">
         <div className="text-center">
           <h2 className="text-2xl md:text-3xl font-light text-white mb-8">
-            권승주의 기준으로
+            지금의 얼굴을
             <br />
-            판단받고 싶다면
+            조금 더 정리하고 싶다면
           </h2>
           <Button href="/contact" variant="secondary" size="lg">
             상담 문의
