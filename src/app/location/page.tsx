@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import Section from '@/components/Section';
 import Button from '@/components/Button';
 
@@ -64,29 +65,23 @@ export default function LocationPage() {
         </div>
       </Section>
 
-      {/* Space Image Placeholder */}
+      {/* Space Image */}
       <Section background="pink">
-        <div className="max-w-4xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="aspect-[4/3] bg-white flex items-center justify-center"
-            >
-              <p className="text-text-secondary/50 text-sm">공간 이미지 1</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="aspect-[4/3] bg-white flex items-center justify-center"
-            >
-              <p className="text-text-secondary/50 text-sm">공간 이미지 2</p>
-            </motion.div>
-          </div>
+        <div className="max-w-2xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="relative aspect-[4/3] overflow-hidden rounded-lg"
+          >
+            <Image
+              src="/location/place1.jpeg"
+              alt="키아라 천안 공간"
+              fill
+              className="object-cover"
+            />
+          </motion.div>
         </div>
       </Section>
 
