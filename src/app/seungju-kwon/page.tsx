@@ -30,7 +30,7 @@ export default function SeungjuKwonPage() {
               <span className="text-lg md:text-xl text-green-secondary font-normal">KIIARA</span>
             </span>
             <br />
-            <span className="text-green-primary">눈썹·수지 인상 설계</span>
+            <span className="text-green-primary">인상을 자연스럽게 바꿉니다</span>
           </motion.h1>
         </div>
       </section>
