@@ -257,6 +257,34 @@ export default function EyebrowPage() {
         </div>
       </Section>
 
+      {/* 인스타그램 CTA */}
+      <Section background="pink">
+        <div className="text-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-2xl md:text-3xl font-light text-text-primary mb-6"
+          >
+            더 많은 작품 보러가기
+          </motion.h2>
+          <motion.a
+            href="https://www.instagram.com/_jjoo_kiiara/"
+            target="_blank"
+            rel="noopener noreferrer"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            whileHover={{ scale: 1.02 }}
+            transition={{ delay: 0.1 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-8 py-4 text-lg font-medium text-white bg-black rounded-full"
+          >
+            인스타그램
+          </motion.a>
+        </div>
+      </Section>
+
       {/* CTA */}
       <Section background="green">
         <div className="text-center">

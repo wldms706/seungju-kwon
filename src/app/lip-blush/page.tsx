@@ -312,6 +312,23 @@ export default function LipBlushPage() {
             </motion.div>
           ))}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          viewport={{ once: true }}
+          className="mt-10 text-center"
+        >
+          <a
+            href="https://www.instagram.com/_jjoo_kiiara/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-8 py-4 text-lg font-medium text-white bg-black rounded-full hover:scale-[1.02] transition-transform"
+          >
+            더 많은 작품 보러가기 (인스타그램)
+          </a>
+        </motion.div>
       </Section>
 
       {/* Lightbox */}

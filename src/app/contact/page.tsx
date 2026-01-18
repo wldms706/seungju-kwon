@@ -48,16 +48,16 @@ export default function ContactPage() {
           {/* Big Buttons */}
           <div className="flex flex-col gap-4">
             <motion.a
-              href="https://www.instagram.com/_jjoo_kiiara/"
+              href="https://pf.kakao.com/_HeTkG"
               target="_blank"
               rel="noopener noreferrer"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               whileHover={{ scale: 1.02 }}
               viewport={{ once: true }}
-              className="flex justify-center items-center min-h-[72px] px-5 text-xl font-bold text-white bg-black rounded-[48px] text-center leading-tight"
+              className="flex justify-center items-center min-h-[72px] px-5 text-xl font-bold text-white bg-[#FEE500] text-[#3C1E1E] rounded-[48px] text-center leading-tight"
             >
-              before &amp; after 보기<br />인스타그램
+              카카오톡 채널 문의하기
             </motion.a>
 
             <motion.a
