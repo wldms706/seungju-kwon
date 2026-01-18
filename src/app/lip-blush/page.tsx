@@ -1,9 +1,18 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
+import Image from 'next/image';
 import Section from '@/components/Section';
 import Button from '@/components/Button';
+
+const LIP_IMAGES = [
+  '/lip/lip-1.jpeg',
+  '/lip/lip-2.jpeg',
+  '/lip/lip-3.jpeg',
+  '/lip/lip-4.jpeg',
+  '/lip/lip-5.jpeg',
+];
 
 type Faq = { q: string; a: string };
 
@@ -32,27 +41,27 @@ const PROCESS = [
 const FAQS: Faq[] = [
   {
     q: '입술문신은 왜 더 조심해야 하나요?',
-    a: '입술은 작은 차이가 인상 전체를 크게 바꿉니다. 그래서 "예쁜 색"보다 "어색하지 않음"이 먼저입니다.',
+    a: '입술은 피부 중 가장 얇은 부위로, 시술자의 숙련도가 결과에 직접적인 영향을 미칩니다. 경계선 처리와 색소 농도 조절에 따라 결과물이 크게 달라지기 때문에, 충분한 경험을 갖춘 전문가에게 받으시는 것이 중요합니다.',
   },
   {
     q: '자연스럽게 가능해요?',
-    a: '자연스럽다는 말은 모호하지만, 과하지 않다는 기준은 분명합니다. 톤·경계·전체 밸런스를 기준으로 정돈합니다.',
+    a: '물론입니다. 1차 시술 후에는 약 50% 정도가 탈각된다고 생각하시면 됩니다. 틴트처럼 은은하게 발색되어 립스틱을 바르면 더욱 선명한 컬러가 연출되고, 쌩얼에도 전혀 어색하지 않은 자연스러운 입술을 만들어드립니다.',
   },
   {
     q: '진해 보일까 봐 걱정돼요.',
-    a: '그 걱정이 정상입니다. 입술은 과해 보이면 되돌리기 어렵기 때문에, 처음부터 "부담 없는 방향"을 우선합니다.',
+    a: '자연스러운 시술이 제 철칙입니다. "입술문신 했다"는 것이 티가 나는 과한 시술은 절대 지양합니다. 본연의 입술색을 정돈하는 방향으로, 누가 봐도 자연스러운 결과를 추구합니다.',
   },
   {
     q: '통증이 많이 아픈 편인가요?',
-    a: '통증의 강도는 개인차가 있지만, "긴장"이 더 크게 느껴지기도 합니다. 과정은 최대한 안정적으로 진행합니다.',
+    a: '놀랍게도 10명 중 7명은 시술 중 주무시기도 합니다. 가벼운 터치로 진행하기 때문에 생각보다 훨씬 편안하게 받으실 수 있습니다. 통증 걱정은 내려놓으셔도 됩니다.',
   },
   {
     q: '얼마나 유지되나요?',
-    a: '피부 컨디션과 생활습관에 따라 개인차가 큽니다. 중요한 건 "처음"보다 "시간이 지난 뒤의 자연스러움"입니다.',
+    a: '개인차가 있지만 최소 2년 이상 유지됩니다. 피부 타입과 생활습관에 따라 달라질 수 있으며, 자연스럽게 서서히 옅어지는 방식으로 유지됩니다.',
   },
   {
     q: '관리 방법이 복잡한가요?',
-    a: '복잡하게 만들지 않습니다. 꼭 필요한 관리만 간단히 안내하고, 무리 없는 루틴을 권장합니다.',
+    a: '시술 후 1~3일 정도는 뜨겁거나 매운 음식을 피해주시고, 양치질과 식사 시 입술 부위에 조금만 신경 써주시면 됩니다. 약 7일 후 완전히 탈각되면 일상생활과 화장 모두 자유롭게 하실 수 있습니다.',
   },
 ];
 
@@ -96,6 +105,8 @@ function FaqItem({ q, a, index }: Faq & { index: number }) {
 }
 
 export default function LipBlushPage() {
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
   return (
     <>
       {/* Hero */}
@@ -124,7 +135,7 @@ export default function LipBlushPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-3xl md:text-5xl font-light text-text-primary leading-tight"
           >
-            입술은 더 섬세해야 합니다
+            천안 입술문신 | 키아라 천안 입술잘하는곳
           </motion.h1>
 
           <motion.p
@@ -133,10 +144,10 @@ export default function LipBlushPage() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="mt-4 max-w-2xl text-base md:text-lg text-text-secondary leading-relaxed"
           >
-            입술은 작은 차이로도 인상이 크게 바뀌는 영역입니다.
-            <br className="hidden md:block" />
-            그래서 &apos;채우는&apos; 방식보다{' '}
-            <span className="text-text-primary font-medium">정리하는 기준</span>을 먼저 세웁니다.
+            입술은 작은 차이가 인상을 크게 바꿔서, 키아라 천안은 &apos;예쁜 색&apos;보다{' '}
+            <strong className="text-text-primary font-medium">어색하지 않은 경계와 톤</strong>을 먼저 설계합니다.
+            <br />
+            부담 없는 방향으로 시작해 필요 시 조정합니다.
           </motion.p>
 
           <motion.div
@@ -269,6 +280,92 @@ export default function LipBlushPage() {
           </Button>
         </div>
       </Section>
+
+      {/* Portfolio */}
+      <Section background="white">
+        <div className="mb-8">
+          <p className="text-sm tracking-widest text-green-primary mb-2">PORTFOLIO</p>
+          <h2 className="text-2xl md:text-3xl font-light text-text-primary">
+            작품 갤러리
+          </h2>
+          <p className="mt-2 text-sm md:text-base text-text-secondary">
+            자연스럽고 정돈된 입술문신 결과물입니다.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {LIP_IMAGES.map((src, index) => (
+            <motion.div
+              key={src}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="relative aspect-square overflow-hidden cursor-pointer group"
+              onClick={() => setLightboxIndex(index)}
+            >
+              <Image
+                src={src}
+                alt={`입술문신 작품 ${index + 1}`}
+                fill
+                className="object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+            </motion.div>
+          ))}
+        </div>
+      </Section>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightboxIndex !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+            onClick={() => setLightboxIndex(null)}
+          >
+            <button
+              className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white/10 text-white text-2xl flex items-center justify-center hover:bg-white/20 transition-colors"
+              onClick={() => setLightboxIndex(null)}
+            >
+              ×
+            </button>
+            <button
+              className="absolute left-5 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 text-white text-xl flex items-center justify-center hover:bg-white/20 transition-colors"
+              onClick={(e) => {
+                e.stopPropagation();
+                setLightboxIndex((lightboxIndex - 1 + LIP_IMAGES.length) % LIP_IMAGES.length);
+              }}
+            >
+              ‹
+            </button>
+            <motion.div
+              key={lightboxIndex}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="relative w-full max-w-4xl aspect-square"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Image
+                src={LIP_IMAGES[lightboxIndex]}
+                alt={`입술문신 작품 ${lightboxIndex + 1}`}
+                fill
+                className="object-contain"
+              />
+            </motion.div>
+            <button
+              className="absolute right-5 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 text-white text-xl flex items-center justify-center hover:bg-white/20 transition-colors"
+              onClick={(e) => {
+                e.stopPropagation();
+                setLightboxIndex((lightboxIndex + 1) % LIP_IMAGES.length);
+              }}
+            >
+              ›
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* FAQ */}
       <Section background="white">

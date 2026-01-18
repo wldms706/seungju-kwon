@@ -67,7 +67,7 @@ export default function SeungjuKwonPage() {
               <br />
               느낌을 기억한다는 것.
               <br /><br />
-              그래서 권승주는
+              그래서 저는
               <br />
               손보다 눈이 먼저 가는 시술을 합니다.
               <br /><br />

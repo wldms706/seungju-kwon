@@ -22,12 +22,20 @@ export default function LocationPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-3xl md:text-5xl font-light text-text-primary leading-tight"
+            className="text-3xl md:text-5xl font-light text-text-primary leading-tight mb-6"
           >
-            천안 불당동,
-            <br />
-            조용하게 정리하는 공간
+            오시는 길 | 키아라 천안
           </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-base md:text-lg text-text-secondary leading-relaxed max-w-2xl mx-auto"
+          >
+            키아라 천안은 예약제로 운영되며, 방문 전 상담을 통해 시술 방향을 먼저 정리합니다.
+            <br />
+            천안에서 자연스러운 반영구를 찾는 분들이 편하게 방문할 수 있도록 안내합니다.
+          </motion.p>
         </div>
       </section>
 
@@ -122,6 +130,34 @@ export default function LocationPage() {
               </p>
             </motion.div>
           </div>
+        </div>
+      </Section>
+
+      {/* Naver Place */}
+      <Section background="pink">
+        <div className="max-w-2xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <p className="text-sm tracking-widest text-green-secondary mb-4">NAVER PLACE</p>
+            <h2 className="text-2xl md:text-3xl font-light text-text-primary mb-4">
+              네이버 플레이스에서
+              <br />
+              더 자세히 확인하세요
+            </h2>
+            <p className="text-text-secondary mb-8">
+              리뷰, 사진, 상세 정보를 한눈에 볼 수 있습니다.
+            </p>
+            <Button
+              href="https://naver.me/Gq8q5qTZ"
+              variant="primary"
+              size="lg"
+            >
+              네이버 플레이스 바로가기
+            </Button>
+          </motion.div>
         </div>
       </Section>
 

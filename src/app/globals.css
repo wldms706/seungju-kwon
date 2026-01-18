@@ -37,14 +37,81 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  line-height: 1.7;
+  line-height: 1.6;
   letter-spacing: -0.02em;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* 모바일 줄바꿈/가독성 최적화 */
+a, p, li, span {
+  overflow-wrap: anywhere;
+}
+
+h1, h2, h3 {
+  line-height: 1.25;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* 버튼/CTA 문구 줄바꿈 최적화 */
+.cta, .btn, button, a.button {
+  text-align: center;
+  line-height: 1.25;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+/* 이미지/영상 레이아웃 보호 */
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 히어로(영상/이미지) 컨테이너 높이 확보 */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 720px;
+  overflow: hidden;
+}
+
+/* 영상/이미지 꽉 채우되, 얼굴(위쪽) 우선 */
+.hero video,
+.hero img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 0%;
+}
+
+/* 모바일 최적화 */
+@media (max-width: 768px) {
+  body { font-size: 16px; }
+  h1 { font-size: 28px; }
+  h2 { font-size: 22px; }
+  h3 { font-size: 18px; }
+
+  /* 모바일: 히어로 높이를 더 키워서 머리 잘림 방지 */
+  .hero {
+    height: 110vh;
+    min-height: 760px;
+  }
+  .hero video,
+  .hero img {
+    object-position: 50% 5%;
+  }
 }
 
 /* Custom scrollbar */

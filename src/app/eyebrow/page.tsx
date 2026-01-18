@@ -49,10 +49,20 @@ export default function EyebrowPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-3xl md:text-5xl font-light text-text-primary leading-tight"
+            className="text-3xl md:text-5xl font-light text-text-primary leading-tight mb-6"
           >
-            눈썹은 얼굴의 지붕입니다
+            천안 눈썹문신 | 키아라 천안 자연결 디자인
           </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-base md:text-lg text-text-secondary leading-relaxed max-w-2xl mx-auto"
+          >
+            천안 키아라의 눈썹문신은 얼굴형·눈매·기존 잔흔을 함께 보고,
+            <br />
+            가장 자연스럽게 보이는 결 방향으로 디자인합니다.
+          </motion.p>
         </div>
       </section>
 
