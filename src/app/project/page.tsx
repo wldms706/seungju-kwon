@@ -8,7 +8,7 @@ export default function ProjectPage() {
   const projects = [
     {
       title: '2026 인상 리셋',
-      description: '새해, 새로운 인상으로 시작하세요. 자연스럽게 정리된 눈썹과 수지로 첫인상을 리셋합니다.',
+      description: '새해, 새로운 인상으로 시작하세요. 자연스럽게 정리된 얼굴로 첫인상을 리셋합니다.',
       tag: '시즌 캠페인',
     },
     {

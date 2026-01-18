@@ -32,9 +32,9 @@ export default function LocationPage() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-base md:text-lg text-text-secondary leading-relaxed max-w-2xl mx-auto"
           >
-            키아라 천안은 예약제로 운영되며, 방문 전 상담을 통해 시술 방향을 먼저 정리합니다.
+            키아라 천안은 예약제로 운영됩니다.
             <br />
-            천안에서 자연스러운 반영구를 찾는 분들이 편하게 방문할 수 있도록 안내합니다.
+            방문 전 상담을 통해 방향을 먼저 정리합니다.
           </motion.p>
         </div>
       </section>
@@ -55,11 +55,11 @@ export default function LocationPage() {
             <br />
             차분하게 얼굴을 정리합니다.
             <br /><br />
-            시술은 짧지만
+            과정은 짧지만
             <br />
             결과는 오래 남기 위해
             <br />
-            모든 과정은 안정적으로 진행됩니다.
+            모든 것이 안정적으로 진행됩니다.
           </motion.p>
         </div>
       </Section>

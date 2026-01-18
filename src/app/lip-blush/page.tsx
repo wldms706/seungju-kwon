@@ -40,20 +40,20 @@ const PROCESS = [
 
 const FAQS: Faq[] = [
   {
-    q: '입술문신은 왜 더 조심해야 하나요?',
-    a: '입술은 피부 중 가장 얇은 부위로, 시술자의 숙련도가 결과에 직접적인 영향을 미칩니다. 경계선 처리와 색소 농도 조절에 따라 결과물이 크게 달라지기 때문에, 충분한 경험을 갖춘 전문가에게 받으시는 것이 중요합니다.',
+    q: '입술은 왜 더 조심해야 하나요?',
+    a: '입술은 피부 중 가장 얇은 부위입니다. 경계선 처리와 톤 조절에 따라 결과물이 크게 달라지기 때문에, 충분한 경험을 갖춘 곳에서 받으시는 것이 중요합니다.',
   },
   {
     q: '자연스럽게 가능해요?',
-    a: '물론입니다. 1차 시술 후에는 약 50% 정도가 탈각된다고 생각하시면 됩니다. 틴트처럼 은은하게 발색되어 립스틱을 바르면 더욱 선명한 컬러가 연출되고, 쌩얼에도 전혀 어색하지 않은 자연스러운 입술을 만들어드립니다.',
+    a: '물론입니다. 틴트처럼 은은하게 발색되어 립스틱을 바르면 더욱 선명한 컬러가 연출되고, 쌩얼에도 전혀 어색하지 않은 자연스러운 입술을 만들어드립니다.',
   },
   {
     q: '진해 보일까 봐 걱정돼요.',
-    a: '자연스러운 시술이 제 철칙입니다. "입술문신 했다"는 것이 티가 나는 과한 시술은 절대 지양합니다. 본연의 입술색을 정돈하는 방향으로, 누가 봐도 자연스러운 결과를 추구합니다.',
+    a: '자연스러운 결과가 기준입니다. 티가 나는 과한 결과는 절대 지양합니다. 본연의 입술색을 정돈하는 방향으로, 누가 봐도 자연스러운 결과를 추구합니다.',
   },
   {
-    q: '통증이 많이 아픈 편인가요?',
-    a: '놀랍게도 10명 중 7명은 시술 중 주무시기도 합니다. 가벼운 터치로 진행하기 때문에 생각보다 훨씬 편안하게 받으실 수 있습니다. 통증 걱정은 내려놓으셔도 됩니다.',
+    q: '아프진 않나요?',
+    a: '놀랍게도 10명 중 7명은 중간에 주무시기도 합니다. 가벼운 터치로 진행하기 때문에 생각보다 훨씬 편안하게 받으실 수 있습니다.',
   },
   {
     q: '얼마나 유지되나요?',
@@ -61,7 +61,7 @@ const FAQS: Faq[] = [
   },
   {
     q: '관리 방법이 복잡한가요?',
-    a: '시술 후 1~3일 정도는 뜨겁거나 매운 음식을 피해주시고, 양치질과 식사 시 입술 부위에 조금만 신경 써주시면 됩니다. 약 7일 후 완전히 탈각되면 일상생활과 화장 모두 자유롭게 하실 수 있습니다.',
+    a: '처음 1~3일 정도는 뜨겁거나 매운 음식을 피해주시고, 양치질과 식사 시 입술 부위에 조금만 신경 써주시면 됩니다. 약 7일 후부터 일상생활과 화장 모두 자유롭게 하실 수 있습니다.',
   },
 ];
 
@@ -126,7 +126,7 @@ export default function LipBlushPage() {
             className="inline-flex items-center gap-2 border border-border-light bg-white px-3 py-1 text-sm text-text-secondary mb-5"
           >
             <span className="inline-flex h-2 w-2 rounded-full bg-pink-primary" />
-            입술문신
+            LIP TONE
           </motion.p>
 
           <motion.h1
@@ -135,7 +135,7 @@ export default function LipBlushPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-3xl md:text-5xl font-light text-text-primary leading-tight"
           >
-            천안 입술문신 | 키아라 천안 입술잘하는곳
+            립 바르면 더 잘 어울리는 입술
           </motion.h1>
 
           <motion.p
@@ -144,10 +144,9 @@ export default function LipBlushPage() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="mt-4 max-w-2xl text-base md:text-lg text-text-secondary leading-relaxed"
           >
-            입술은 작은 차이가 인상을 크게 바꿔서, 키아라 천안은 &apos;예쁜 색&apos;보다{' '}
-            <strong className="text-text-primary font-medium">어색하지 않은 경계와 톤</strong>을 먼저 설계합니다.
+            쌩얼에도 괜히 예뻐 보이는 입술,
             <br />
-            부담 없는 방향으로 시작해 필요 시 조정합니다.
+            <strong className="text-text-primary font-medium">메이크업이 완성되는 느낌</strong>을 만듭니다.
           </motion.p>
 
           <motion.div
@@ -186,10 +185,10 @@ export default function LipBlushPage() {
         <div className="mb-8">
           <p className="text-sm tracking-widest text-green-primary mb-2">STANDARD</p>
           <h2 className="text-2xl md:text-3xl font-light text-text-primary">
-            입술문신의 핵심은 &apos;톤&apos;보다 &apos;인상&apos;입니다
+            핵심은 색보다 인상입니다
           </h2>
           <p className="mt-2 text-sm md:text-base text-text-secondary">
-            권승주는 &apos;티가 나는 결과&apos;를 피하는 기준을 먼저 세웁니다.
+            티가 나는 결과를 피하는 기준을 먼저 세웁니다.
           </p>
         </div>
 
@@ -286,10 +285,10 @@ export default function LipBlushPage() {
         <div className="mb-8">
           <p className="text-sm tracking-widest text-green-primary mb-2">PORTFOLIO</p>
           <h2 className="text-2xl md:text-3xl font-light text-text-primary">
-            작품 갤러리
+            before &amp; after
           </h2>
           <p className="mt-2 text-sm md:text-base text-text-secondary">
-            자연스럽고 정돈된 입술문신 결과물입니다.
+            자연스럽고 정돈된 결과물입니다.
           </p>
         </div>
 
@@ -306,7 +305,7 @@ export default function LipBlushPage() {
             >
               <Image
                 src={src}
-                alt={`입술문신 작품 ${index + 1}`}
+                alt={`입술 ${index + 1}`}
                 fill
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
               />
@@ -349,7 +348,7 @@ export default function LipBlushPage() {
             >
               <Image
                 src={LIP_IMAGES[lightboxIndex]}
-                alt={`입술문신 작품 ${lightboxIndex + 1}`}
+                alt={`입술 ${lightboxIndex + 1}`}
                 fill
                 className="object-contain"
               />
@@ -404,9 +403,9 @@ export default function LipBlushPage() {
               지금의 얼굴을 조금 더 정리하고 싶다면
             </h2>
             <p className="mt-3 max-w-2xl text-sm md:text-base text-text-secondary leading-relaxed">
-              입술은 &apos;색&apos;보다 &apos;인상&apos;이 먼저입니다.
+              입술은 색보다 인상이 먼저입니다.
               <br className="hidden md:block" />
-              권승주의 기준으로, 부담 없이 자연스럽게 정리해드립니다.
+              부담 없이 자연스럽게 정리해드립니다.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-3">
@@ -419,7 +418,7 @@ export default function LipBlushPage() {
             </div>
 
             <p className="mt-6 text-xs text-text-secondary">
-              * 표현은 과장하지 않습니다. 자연스러움은 &apos;유행&apos;이 아니라 &apos;판단&apos;에서 나옵니다.
+              * 표현은 과장하지 않습니다. 자연스러움은 유행이 아니라 판단에서 나옵니다.
             </p>
           </motion.div>
         </div>

@@ -54,13 +54,11 @@ export default function BrandPage() {
             className="mb-16"
           >
             <p className="text-text-secondary leading-loose text-center">
-              권승주는 트렌드보다 얼굴의 구조를 먼저 보고,
+              트렌드보다 얼굴의 구조를 먼저 보고,
               <br />
               유행보다 시간이 지나도 남는 인상을 선택합니다.
               <br /><br />
-              눈썹과 수지는
-              <br />
-              &apos;티가 나면 실패&apos;인 영역이기 때문에
+              티가 나면 실패인 영역이기 때문에
               <br />
               더욱 판단이 중요합니다.
             </p>

@@ -57,7 +57,7 @@ export default function ContactPage() {
               viewport={{ once: true }}
               className="flex justify-center items-center min-h-[72px] px-5 text-xl font-bold text-white bg-black rounded-[48px] text-center leading-tight"
             >
-              시술사진 보기<br />인스타그램
+              before &amp; after 보기<br />인스타그램
             </motion.a>
 
             <motion.a
@@ -85,7 +85,7 @@ export default function ContactPage() {
             <br />
             문의 후 일정 조율을 통해 방문 상담이 진행됩니다.
             <br /><br />
-            무리한 시술 권유 없이,
+            무리한 권유 없이,
             <br />
             현재 상태에서 필요한 것만 판단해드립니다.
           </p>
