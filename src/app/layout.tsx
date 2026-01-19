@@ -9,10 +9,7 @@ export const metadata: Metadata = {
   description: "천안 키아라 눈썹문신 전문샵. 네추럴브로우 디자인 눈썹·입술 반영구, 얼굴형과 톤에 맞춘 맞춤 디자인 시술.",
   keywords: ["키아라 천안", "천안 키아라", "천안 눈썹문신 키아라", "천안 반영구", "천안 눈썹문신"],
   icons: {
-    icon: [
-      { url: "/favicon.ico?v=2", sizes: "any" },
-      { url: "/favicon.svg?v=2", type: "image/svg+xml" },
-    ],
+    icon: { url: "/favicon.svg?v=3", type: "image/svg+xml" },
   },
   robots: {
     index: true,
