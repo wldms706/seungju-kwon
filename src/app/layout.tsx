@@ -10,8 +10,8 @@ export const metadata: Metadata = {
   keywords: ["키아라 천안", "천안 키아라", "천안 눈썹문신 키아라", "천안 반영구", "천안 눈썹문신"],
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico?v=2", sizes: "any" },
+      { url: "/favicon.svg?v=2", type: "image/svg+xml" },
     ],
   },
   robots: {
