@@ -6,21 +6,22 @@ import Image from 'next/image';
 import Section from '@/components/Section';
 import Button from '@/components/Button';
 
-const reviewImages = [
-  '/review/review1.jpeg',
-  '/review/review2.jpeg',
-  '/review/review3.jpeg',
-  '/review/review4.jpeg',
-  '/review/review5.jpeg',
-  '/review/review6.jpeg',
-  '/review/review7.jpeg',
+const portfolioImages = [
+  '/eyebrow/woman/w.jpeg',
+  '/eyebrow/woman/w1.jpeg',
+  '/eyebrow/woman/w2.png',
+  '/eyebrow/woman/w3.jpeg',
+  '/eyebrow/woman/w4.jpeg',
+  '/eyebrow/woman/w5.jpeg',
+  '/eyebrow/woman/w6.jpeg',
+  '/eyebrow/woman/w7.jpeg',
 ];
 
 const INITIAL_DISPLAY_COUNT = 6;
 
 function PortfolioSection() {
   const [showAll, setShowAll] = useState(false);
-  const displayedImages = showAll ? reviewImages : reviewImages.slice(0, INITIAL_DISPLAY_COUNT);
+  const displayedImages = showAll ? portfolioImages : portfolioImages.slice(0, INITIAL_DISPLAY_COUNT);
 
   return (
     <Section background="white">
@@ -50,7 +51,7 @@ function PortfolioSection() {
             </motion.div>
           ))}
         </div>
-        {reviewImages.length > INITIAL_DISPLAY_COUNT && (
+        {portfolioImages.length > INITIAL_DISPLAY_COUNT && (
           <div className="text-center mt-8">
             <button
               onClick={() => setShowAll(!showAll)}
