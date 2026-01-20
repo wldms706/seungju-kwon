@@ -1,10 +1,20 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Section from '@/components/Section';
 import Button from '@/components/Button';
+
+const reviewImages = [
+  '/review/review1.jpeg',
+  '/review/review2.jpeg',
+  '/review/review3.jpeg',
+  '/review/review4.jpeg',
+  '/review/review5.jpeg',
+  '/review/review6.jpeg',
+  '/review/review7.jpeg',
+];
 
 const portfolioImages = [
   '/eyebrow/woman/w.jpeg',
@@ -18,6 +28,51 @@ const portfolioImages = [
 ];
 
 const INITIAL_DISPLAY_COUNT = 6;
+
+function ReviewCarousel() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const doubledImages = [...reviewImages, ...reviewImages];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % reviewImages.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <section className="py-12 bg-pink-light/30 overflow-hidden">
+      <div className="text-center mb-8">
+        <p className="text-sm tracking-widest text-green-secondary mb-2">REVIEWS</p>
+        <h2 className="text-xl md:text-2xl font-light text-text-primary">
+          고객 후기
+        </h2>
+      </div>
+      <div className="relative">
+        <motion.div
+          className="flex gap-4"
+          animate={{ x: `-${currentIndex * (200 + 16)}px` }}
+          transition={{ duration: 0.5, ease: 'easeInOut' }}
+          style={{ paddingLeft: '1rem' }}
+        >
+          {doubledImages.map((src, index) => (
+            <div
+              key={index}
+              className="flex-shrink-0 w-[200px] aspect-[3/4] relative rounded-lg overflow-hidden"
+            >
+              <Image
+                src={src}
+                alt={`고객 후기 ${(index % reviewImages.length) + 1}`}
+                fill
+                className="object-cover"
+              />
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
 
 function PortfolioSection() {
   const [showAll, setShowAll] = useState(false);
@@ -521,6 +576,9 @@ export default function Home() {
 
       {/* Portfolio / 작업 예시 */}
       <PortfolioSection />
+
+      {/* Review Carousel / 고객 후기 */}
+      <ReviewCarousel />
 
       {/* Final CTA */}
       <Section background="green">
