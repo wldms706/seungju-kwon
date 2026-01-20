@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Section from '@/components/Section';
@@ -14,6 +15,63 @@ const reviewImages = [
   '/review/review6.jpeg',
   '/review/review7.jpeg',
 ];
+
+const INITIAL_DISPLAY_COUNT = 6;
+
+function PortfolioSection() {
+  const [showAll, setShowAll] = useState(false);
+  const displayedImages = showAll ? reviewImages : reviewImages.slice(0, INITIAL_DISPLAY_COUNT);
+
+  return (
+    <Section background="white">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-12">
+          <p className="text-sm tracking-widest text-green-secondary mb-4">PORTFOLIO</p>
+          <h2 className="text-2xl md:text-4xl font-light text-text-primary">
+            작업 예시
+          </h2>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          {displayedImages.map((src, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="relative aspect-[3/4] overflow-hidden rounded-lg"
+            >
+              <Image
+                src={src}
+                alt={`작업 예시 ${index + 1}`}
+                fill
+                className="object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </motion.div>
+          ))}
+        </div>
+        {reviewImages.length > INITIAL_DISPLAY_COUNT && (
+          <div className="text-center mt-8">
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-transparent text-text-primary border border-line font-medium hover:bg-neutral-50 transition-colors"
+            >
+              {showAll ? '접기' : '작품사진 전체 보기'}
+              <svg
+                className={`ml-2 w-4 h-4 transition-transform ${showAll ? 'rotate-180' : ''}`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          </div>
+        )}
+      </div>
+    </Section>
+  );
+}
 
 export default function Home() {
   return (
@@ -429,37 +487,6 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* Customer Reviews */}
-      <Section background="white">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <p className="text-sm tracking-widest text-green-secondary mb-4">REVIEWS</p>
-            <h2 className="text-2xl md:text-4xl font-light text-text-primary">
-              고객 후기
-            </h2>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {reviewImages.map((src, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="relative aspect-[3/4] overflow-hidden rounded-lg"
-              >
-                <Image
-                  src={src}
-                  alt={`고객 후기 ${index + 1}`}
-                  fill
-                  className="object-cover hover:scale-105 transition-transform duration-300"
-                />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </Section>
-
       {/* Recommended For */}
       <Section background="pink">
         <div className="text-center mb-12">
@@ -490,6 +517,9 @@ export default function Home() {
           ))}
         </div>
       </Section>
+
+      {/* Portfolio / 작업 예시 */}
+      <PortfolioSection />
 
       {/* Final CTA */}
       <Section background="green">
