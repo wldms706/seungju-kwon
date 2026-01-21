@@ -2,6 +2,18 @@
 // 배포 후 받은 Google Apps Script 웹앱 URL을 여기에 입력하세요
 const GOOGLE_SHEET_URL = process.env.NEXT_PUBLIC_GOOGLE_SHEET_URL || '';
 
+// 세션 ID 생성 (같은 방문자 식별용)
+function getSessionId(): string {
+  if (typeof window === 'undefined') return '';
+
+  let sessionId = sessionStorage.getItem('kiiara_session_id');
+  if (!sessionId) {
+    sessionId = `${Date.now()}_${Math.random().toString(36).substring(2, 11)}`;
+    sessionStorage.setItem('kiiara_session_id', sessionId);
+  }
+  return sessionId;
+}
+
 export interface BehaviorLog {
   날짜?: string;
   유입경로: string;
@@ -11,6 +23,7 @@ export interface BehaviorLog {
   버튼클릭: '✅' | '❌';
   문의여부: '✅' | '❌';
   메모?: string;
+  sessionId?: string;
 }
 
 // 유입경로 파라미터에서 정보 추출
@@ -81,6 +94,7 @@ export async function sendBehaviorLog(log: Partial<BehaviorLog>): Promise<boolea
   try {
     // 영문 키로 매핑 (Google Apps Script 호환성)
     const params = new URLSearchParams();
+    params.append('sessionId', getSessionId());
     params.append('date', fullLog.날짜 || '');
     params.append('source', fullLog.유입경로);
     params.append('campaign', fullLog.광고명);
@@ -90,7 +104,7 @@ export async function sendBehaviorLog(log: Partial<BehaviorLog>): Promise<boolea
     params.append('inquiry', fullLog.문의여부);
     params.append('memo', fullLog.메모 || '');
 
-    const response = await fetch(`${GOOGLE_SHEET_URL}?${params.toString()}`, {
+    await fetch(`${GOOGLE_SHEET_URL}?${params.toString()}`, {
       method: 'GET',
       mode: 'no-cors',
     });
