@@ -64,10 +64,14 @@ export function getTrafficSource(): { 유입경로: string; 광고명: string } 
   };
 }
 
-// 오늘 날짜 포맷 (M/D 형식)
+// 오늘 날짜+시간 포맷 (M/D HH:MM 형식)
 function getTodayDate(): string {
   const today = new Date();
-  return `${today.getMonth() + 1}/${today.getDate()}`;
+  const month = today.getMonth() + 1;
+  const day = today.getDate();
+  const hours = today.getHours().toString().padStart(2, '0');
+  const minutes = today.getMinutes().toString().padStart(2, '0');
+  return `${month}/${day} ${hours}:${minutes}`;
 }
 
 // 구글 시트에 로그 전송

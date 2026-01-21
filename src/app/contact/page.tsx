@@ -2,8 +2,17 @@
 
 import { motion } from 'framer-motion';
 import Section from '@/components/Section';
+import { usePageAnalytics } from '@/hooks/useAnalytics';
+import { trackInquiryComplete } from '@/lib/analytics';
 
 export default function ContactPage() {
+  // 페이지 방문 추적
+  usePageAnalytics('/contact');
+
+  // 문의 버튼 클릭 시 호출
+  const handleInquiryClick = (type: string) => {
+    trackInquiryComplete('/contact', type);
+  };
   return (
     <>
       {/* Hero */}
@@ -51,6 +60,7 @@ export default function ContactPage() {
               href="https://pf.kakao.com/_HeTkG"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => handleInquiryClick('카카오톡')}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               whileHover={{ scale: 1.02 }}
@@ -64,6 +74,7 @@ export default function ContactPage() {
               href="https://map.naver.com/p/search/%ED%82%A4%EC%95%84%EB%9D%BC%20%EC%B2%9C%EC%95%88/place/1289980492?placePath=/home"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => handleInquiryClick('네이버플레이스')}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               whileHover={{ scale: 1.02 }}
