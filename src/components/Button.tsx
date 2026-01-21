@@ -41,9 +41,7 @@ export default function Button({
 
   const combinedClassName = `${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`;
 
-  const MotionComponent = href ? motion.create(Link) : motion.button;
-
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent) => {
     if (trackClick) {
       const 페이지 = typeof window !== 'undefined' ? window.location.pathname : '';
       trackCTAClick(페이지, trackMemo);
@@ -51,15 +49,28 @@ export default function Button({
     onClick?.();
   };
 
+  if (href) {
+    return (
+      <Link href={href} onClick={handleClick}>
+        <motion.span
+          className={combinedClassName}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          {children}
+        </motion.span>
+      </Link>
+    );
+  }
+
   return (
-    <MotionComponent
-      href={href || ''}
+    <motion.button
       onClick={handleClick}
       className={combinedClassName}
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
     >
       {children}
-    </MotionComponent>
+    </motion.button>
   );
 }
