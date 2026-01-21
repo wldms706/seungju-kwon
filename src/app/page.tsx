@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Section from '@/components/Section';
 import Button from '@/components/Button';
+import { usePageAnalytics } from '@/hooks/useAnalytics';
 
 const reviewImages = [
   '/review/review1.jpeg',
@@ -130,6 +131,9 @@ function PortfolioSection() {
 }
 
 export default function Home() {
+  // 페이지 방문 및 스크롤 추적
+  usePageAnalytics('메인');
+
   return (
     <>
       {/* Hero Section with Video */}
@@ -188,7 +192,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.8 }}
             className="flex flex-col items-center gap-3"
           >
-            <Button href="/contact" size="lg">
+            <Button href="/contact" size="lg" trackClick trackMemo="히어로 CTA">
               상담/예약 문의하기
             </Button>
             <a
@@ -434,7 +438,7 @@ export default function Home() {
 
           {/* CTA */}
           <div className="mt-12 text-center">
-            <Button href="/contact" size="lg">
+            <Button href="/contact" size="lg" trackClick trackMemo="인상설계 섹션 CTA">
               상담 문의하기
             </Button>
             <p className="mt-3 text-xs text-neutral-500">
@@ -589,7 +593,7 @@ export default function Home() {
             <br />
             조금 더 정리하고 싶다면
           </h2>
-          <Button href="/contact" variant="secondary" size="lg">
+          <Button href="/contact" variant="secondary" size="lg" trackClick trackMemo="하단 CTA">
             상담 문의
           </Button>
         </div>

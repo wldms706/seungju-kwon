@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { trackCTAClick } from '@/lib/analytics';
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -10,6 +11,8 @@ interface ButtonProps {
   size?: 'sm' | 'md' | 'lg';
   className?: string;
   onClick?: () => void;
+  trackClick?: boolean; // CTA 클릭 추적 여부
+  trackMemo?: string;   // 추적 시 메모
 }
 
 export default function Button({
@@ -19,6 +22,8 @@ export default function Button({
   size = 'md',
   className = '',
   onClick,
+  trackClick = false,
+  trackMemo,
 }: ButtonProps) {
   const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-300 tracking-wide';
 
@@ -38,10 +43,18 @@ export default function Button({
 
   const MotionComponent = href ? motion.create(Link) : motion.button;
 
+  const handleClick = () => {
+    if (trackClick) {
+      const 페이지 = typeof window !== 'undefined' ? window.location.pathname : '';
+      trackCTAClick(페이지, trackMemo);
+    }
+    onClick?.();
+  };
+
   return (
     <MotionComponent
       href={href || ''}
-      onClick={onClick}
+      onClick={handleClick}
       className={combinedClassName}
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
