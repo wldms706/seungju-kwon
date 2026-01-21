@@ -19,12 +19,16 @@ const reviewImages = [
 
 const portfolioImages = [
   '/eyebrow/woman/w.jpeg',
+  '/eyebrow/man/man1.jpeg',
   '/eyebrow/woman/w1.jpeg',
   '/eyebrow/woman/w2.png',
+  '/eyebrow/man/man2.jpeg',
   '/eyebrow/woman/w3.jpeg',
   '/eyebrow/woman/w4.jpeg',
+  '/eyebrow/man/man3.jpeg',
   '/eyebrow/woman/w5.jpeg',
   '/eyebrow/woman/w6.jpeg',
+  '/eyebrow/man/man4.jpeg',
   '/eyebrow/woman/w7.jpeg',
 ];
 
@@ -448,6 +452,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Portfolio / 작업 예시 */}
+      <PortfolioSection />
+
       {/* Artist Profile Preview */}
       <Section background="pink">
         <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -577,9 +584,6 @@ export default function Home() {
           ))}
         </div>
       </Section>
-
-      {/* Portfolio / 작업 예시 */}
-      <PortfolioSection />
 
       {/* Review Carousel / 고객 후기 */}
       <ReviewCarousel />
