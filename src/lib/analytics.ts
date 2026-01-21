@@ -14,16 +14,38 @@ function getSessionId(): string {
   return sessionId;
 }
 
-export interface BehaviorLog {
-  날짜?: string;
-  유입경로: string;
-  광고명: string;
-  페이지: string;
-  행동단계: string;
-  버튼클릭: '✅' | '❌';
-  문의여부: '✅' | '❌';
-  메모?: string;
-  sessionId?: string;
+// 세션 데이터 저장소 (한 세션의 모든 행동을 모음)
+interface SessionData {
+  sessionId: string;
+  date: string;
+  source: string;
+  campaign: string;
+  pages: string[];        // 방문한 페이지들
+  maxScroll: number;      // 최대 스크롤 깊이
+  clicked: boolean;       // CTA 클릭 여부
+  inquiry: boolean;       // 문의 여부
+  memos: string[];        // 메모들
+}
+
+let sessionData: SessionData | null = null;
+let isSending = false;
+
+function getSessionData(): SessionData {
+  if (!sessionData) {
+    const { 유입경로, 광고명 } = getTrafficSource();
+    sessionData = {
+      sessionId: getSessionId(),
+      date: getTodayDate(),
+      source: 유입경로,
+      campaign: 광고명,
+      pages: [],
+      maxScroll: 0,
+      clicked: false,
+      inquiry: false,
+      memos: [],
+    };
+  }
+  return sessionData;
 }
 
 // 유입경로 파라미터에서 정보 추출
@@ -48,13 +70,17 @@ export function getTrafficSource(): { 유입경로: string; 광고명: string } 
   } else if (utm_medium === 'retarget' || utm_medium === 'remarketing') {
     유입경로 = '리타겟';
   } else if (document.referrer) {
-    const referrer = new URL(document.referrer);
-    if (referrer.hostname.includes('instagram')) {
-      유입경로 = '인스타';
-    } else if (referrer.hostname.includes('naver')) {
-      유입경로 = '네이버';
-    } else if (referrer.hostname.includes('google')) {
-      유입경로 = '구글';
+    try {
+      const referrer = new URL(document.referrer);
+      if (referrer.hostname.includes('instagram')) {
+        유입경로 = '인스타';
+      } else if (referrer.hostname.includes('naver')) {
+        유입경로 = '네이버';
+      } else if (referrer.hostname.includes('google')) {
+        유입경로 = '구글';
+      }
+    } catch {
+      // referrer 파싱 실패 시 무시
     }
   }
 
@@ -74,53 +100,74 @@ function getTodayDate(): string {
   return `${month}/${day} ${hours}:${minutes}`;
 }
 
-// 구글 시트에 로그 전송
-export async function sendBehaviorLog(log: Partial<BehaviorLog>): Promise<boolean> {
-  if (!GOOGLE_SHEET_URL) {
-    console.warn('Google Sheet URL이 설정되지 않았습니다.');
-    return false;
-  }
-
-  const { 유입경로, 광고명 } = getTrafficSource();
-
-  const fullLog: BehaviorLog = {
-    날짜: getTodayDate(),
-    유입경로,
-    광고명,
-    페이지: typeof window !== 'undefined' ? window.location.pathname : '',
-    행동단계: '',
-    버튼클릭: '❌',
-    문의여부: '❌',
-    메모: '',
-    ...log,
-  };
-
-  try {
-    // 영문 키로 매핑 (Google Apps Script 호환성)
-    const params = new URLSearchParams();
-    params.append('sessionId', getSessionId());
-    params.append('date', fullLog.날짜 || '');
-    params.append('source', fullLog.유입경로);
-    params.append('campaign', fullLog.광고명);
-    params.append('page', fullLog.페이지);
-    params.append('action', fullLog.행동단계);
-    params.append('clicked', fullLog.버튼클릭);
-    params.append('inquiry', fullLog.문의여부);
-    params.append('memo', fullLog.메모 || '');
-
-    await fetch(`${GOOGLE_SHEET_URL}?${params.toString()}`, {
-      method: 'GET',
-      mode: 'no-cors',
-    });
-
-    return true;
-  } catch (error) {
-    console.error('행동 로그 전송 실패:', error);
-    return false;
+// 페이지 방문 기록
+export function trackPageVisit(page: string): void {
+  const data = getSessionData();
+  if (!data.pages.includes(page)) {
+    data.pages.push(page);
   }
 }
 
-// 스크롤 깊이 추적
+// 스크롤 깊이 기록
+export function trackScroll(depth: number): void {
+  const data = getSessionData();
+  if (depth > data.maxScroll) {
+    data.maxScroll = depth;
+  }
+}
+
+// CTA 클릭 기록
+export function trackCTAClick(_페이지: string, 메모?: string): void {
+  const data = getSessionData();
+  data.clicked = true;
+  if (메모 && !data.memos.includes(메모)) {
+    data.memos.push(메모);
+  }
+}
+
+// 문의 완료 기록
+export function trackInquiryComplete(_페이지: string, 메모?: string): void {
+  const data = getSessionData();
+  data.clicked = true;
+  data.inquiry = true;
+  if (메모 && !data.memos.includes(메모)) {
+    data.memos.push(메모);
+  }
+  // 문의 완료 시 즉시 전송
+  sendSessionData();
+}
+
+// 세션 데이터를 구글 시트로 전송
+export function sendSessionData(): void {
+  if (!GOOGLE_SHEET_URL || !sessionData || isSending) {
+    return;
+  }
+
+  isSending = true;
+  const data = sessionData;
+
+  const params = new URLSearchParams();
+  params.append('sessionId', data.sessionId);
+  params.append('date', data.date);
+  params.append('source', data.source);
+  params.append('campaign', data.campaign);
+  params.append('pages', data.pages.join(' → '));  // 페이지 경로를 화살표로 연결
+  params.append('maxScroll', `${data.maxScroll}%`);
+  params.append('clicked', data.clicked ? '✅' : '❌');
+  params.append('inquiry', data.inquiry ? '✅' : '❌');
+  params.append('memo', data.memos.join(', '));
+
+  // navigator.sendBeacon 사용 (페이지 떠날 때도 확실히 전송)
+  const url = `${GOOGLE_SHEET_URL}?${params.toString()}`;
+
+  if (navigator.sendBeacon) {
+    navigator.sendBeacon(url);
+  } else {
+    fetch(url, { method: 'GET', mode: 'no-cors', keepalive: true });
+  }
+}
+
+// 스크롤 깊이 추적 (기존 호환성 유지)
 export function trackScrollDepth(callback: (depth: number) => void): () => void {
   if (typeof window === 'undefined') return () => {};
 
@@ -135,6 +182,7 @@ export function trackScrollDepth(callback: (depth: number) => void): () => void 
     depths.forEach((depth) => {
       if (scrollPercent >= depth && !reached.has(depth)) {
         reached.add(depth);
+        trackScroll(depth);  // 세션 데이터에 기록
         callback(depth);
       }
     });
@@ -144,23 +192,40 @@ export function trackScrollDepth(callback: (depth: number) => void): () => void 
   return () => window.removeEventListener('scroll', handleScroll);
 }
 
-// CTA 버튼 클릭 추적
-export function trackCTAClick(페이지: string, 메모?: string): void {
-  sendBehaviorLog({
-    페이지,
-    행동단계: 'CTA클릭',
-    버튼클릭: '✅',
-    메모,
+// 페이지 떠날 때 전송 설정
+export function setupBeforeUnload(): void {
+  if (typeof window === 'undefined') return;
+
+  const handleUnload = () => {
+    sendSessionData();
+  };
+
+  window.addEventListener('beforeunload', handleUnload);
+  window.addEventListener('pagehide', handleUnload);
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') {
+      sendSessionData();
+    }
   });
 }
 
-// 문의 완료 추적
-export function trackInquiryComplete(페이지: string, 메모?: string): void {
-  sendBehaviorLog({
-    페이지,
-    행동단계: 'CTA클릭',
-    버튼클릭: '✅',
-    문의여부: '✅',
-    메모,
-  });
+// 기존 sendBehaviorLog 함수 (호환성 유지 - 이제 세션에 기록만 함)
+export interface BehaviorLog {
+  날짜?: string;
+  유입경로: string;
+  광고명: string;
+  페이지: string;
+  행동단계: string;
+  버튼클릭: '✅' | '❌';
+  문의여부: '✅' | '❌';
+  메모?: string;
+  sessionId?: string;
+}
+
+export async function sendBehaviorLog(log: Partial<BehaviorLog>): Promise<boolean> {
+  // 페이지 방문 기록
+  if (log.페이지) {
+    trackPageVisit(log.페이지);
+  }
+  return true;
 }
