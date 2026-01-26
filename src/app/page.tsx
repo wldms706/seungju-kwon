@@ -370,8 +370,8 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.8 }}
             className="flex flex-col items-center gap-3"
           >
-            <Button href="/contact" size="lg" trackClick trackMemo="히어로 CTA">
-              기준 살펴보기
+            <Button href="/eyebrow" size="lg" trackClick trackMemo="히어로 CTA">
+              눈썹 작업 보기
             </Button>
             <a
               href="/brand"
