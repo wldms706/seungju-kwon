@@ -34,6 +34,180 @@ const portfolioImages = [
 
 const INITIAL_DISPLAY_COUNT = 6;
 
+const diagnosisQuestions = [
+  {
+    question: '눈썹문신을 고민할 때\n가장 불안한 건 무엇인가요?',
+    options: [
+      '너무 진해질까 봐',
+      '내 얼굴에 안 어울릴까 봐',
+      '전에 했던 경험이 별로라서',
+      '어떤 기준으로 골라야 할지 몰라서',
+    ],
+  },
+  {
+    question: '눈썹문신 샵을 볼 때\n가장 헷갈리는 포인트는?',
+    options: [
+      '전후 사진은 많은데 기준이 없다',
+      '말이 다 달라서 판단이 어렵다',
+      '상담 때랑 결과가 다를까 봐',
+      '내 얼굴 얘기는 안 해주는 것 같다',
+    ],
+  },
+  {
+    question: '지금 이 페이지를 보고 있는 이유는?',
+    options: [
+      '처음이라 기준이 필요해서',
+      '다시 하기 전이라 더 신중해서',
+      '여러 곳을 비교 중이라서',
+      '그냥 정보부터 보고 싶어서',
+    ],
+  },
+];
+
+function DiagnosisQuiz() {
+  const [currentStep, setCurrentStep] = useState(0);
+  const [answers, setAnswers] = useState<number[]>([]);
+  const [isComplete, setIsComplete] = useState(false);
+
+  const handleSelect = (optionIndex: number) => {
+    const newAnswers = [...answers, optionIndex];
+    setAnswers(newAnswers);
+
+    if (currentStep < diagnosisQuestions.length - 1) {
+      setTimeout(() => setCurrentStep(currentStep + 1), 300);
+    } else {
+      setTimeout(() => setIsComplete(true), 300);
+    }
+  };
+
+  const resetQuiz = () => {
+    setCurrentStep(0);
+    setAnswers([]);
+    setIsComplete(false);
+  };
+
+  return (
+    <section className="py-16 md:py-24 bg-gradient-to-b from-neutral-50 to-white">
+      <div className="max-w-2xl mx-auto px-4">
+        <div className="text-center mb-10">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-sm tracking-widest text-green-secondary mb-3"
+          >
+            30초 구조진단
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true }}
+            className="text-2xl md:text-3xl font-light text-text-primary"
+          >
+            나에게 맞는 기준 찾기
+          </motion.h2>
+        </div>
+
+        {!isComplete ? (
+          <motion.div
+            key={currentStep}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.3 }}
+            className="bg-white rounded-2xl shadow-lg p-6 md:p-10"
+          >
+            {/* Progress */}
+            <div className="flex items-center justify-between mb-8">
+              <span className="text-sm text-neutral-500">
+                Q{currentStep + 1}
+              </span>
+              <div className="flex gap-2">
+                {diagnosisQuestions.map((_, idx) => (
+                  <div
+                    key={idx}
+                    className={`w-8 h-1 rounded-full transition-colors ${
+                      idx <= currentStep ? 'bg-green-primary' : 'bg-neutral-200'
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Question */}
+            <h3 className="text-lg md:text-xl font-medium text-text-primary mb-8 whitespace-pre-line leading-relaxed">
+              {diagnosisQuestions[currentStep].question}
+            </h3>
+
+            {/* Options */}
+            <div className="space-y-3">
+              {diagnosisQuestions[currentStep].options.map((option, idx) => (
+                <motion.button
+                  key={idx}
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.99 }}
+                  onClick={() => handleSelect(idx)}
+                  className="w-full text-left p-4 rounded-xl border border-neutral-200 hover:border-green-primary hover:bg-green-primary/5 transition-all text-text-secondary hover:text-text-primary"
+                >
+                  {option}
+                </motion.button>
+              ))}
+            </div>
+          </motion.div>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4 }}
+            className="bg-white rounded-2xl shadow-lg p-6 md:p-10 text-center"
+          >
+            <div className="w-16 h-16 bg-green-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg
+                className="w-8 h-8 text-green-primary"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+            </div>
+            <h3 className="text-xl md:text-2xl font-medium text-text-primary mb-4">
+              고민을 확인했어요
+            </h3>
+            <p className="text-text-secondary leading-relaxed mb-8">
+              이런 고민을 가진 분들께
+              <br />
+              기준을 알려드리고 있습니다.
+              <br /><br />
+              <span className="text-text-primary font-medium">
+                과하지 않게, 시간이 지나도 자연스럽게.
+              </span>
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Button href="/contact" size="lg" trackClick trackMemo="구조진단 완료 CTA">
+                상담 문의하기
+              </Button>
+              <button
+                onClick={resetQuiz}
+                className="px-6 py-3 rounded-full text-text-secondary hover:text-text-primary hover:bg-neutral-100 transition-colors"
+              >
+                다시 해보기
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </div>
+    </section>
+  );
+}
+
 function ReviewCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const doubledImages = [...reviewImages, ...reviewImages];
@@ -174,9 +348,9 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-3xl md:text-5xl lg:text-6xl font-light leading-tight mb-8 text-white"
           >
-            인상이 달라지면,
+            인상은
             <br />
-            <span className="font-medium">일이 풀립니다</span>
+            <span className="font-medium">하루의 분위기를 만듭니다</span>
           </motion.h1>
 
           <motion.p
@@ -185,9 +359,9 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="text-base md:text-lg text-white/90 max-w-xl mx-auto mb-12 leading-relaxed"
           >
-            쌩얼이 달라지면 메이크업도 달라집니다.
+            과하지 않게,
             <br />
-            과하지 않게, 오래 봐도 편안한 인상을 만듭니다.
+            오래 봐도 편안한 인상을 기준으로 선택을 돕습니다.
           </motion.p>
 
           <motion.div
@@ -197,13 +371,13 @@ export default function Home() {
             className="flex flex-col items-center gap-3"
           >
             <Button href="/contact" size="lg" trackClick trackMemo="히어로 CTA">
-              상담/예약 문의하기
+              기준 살펴보기
             </Button>
             <a
-              href="/eyebrow"
+              href="/brand"
               className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-transparent text-white border border-white/50 font-semibold hover:bg-white/10 transition-colors"
             >
-              before &amp; after 보기
+              브랜드 철학 보기
             </a>
           </motion.div>
         </div>
@@ -244,7 +418,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-2xl md:text-4xl font-light text-text-primary mb-8"
           >
-            인상이 달라지면, 일이 풀립니다.
+            인상은 작은 선택의 누적입니다
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -253,9 +427,9 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-text-secondary leading-loose mb-8"
           >
-            눈썹 하나로 기분이 바뀌고
+            하나의 요소만으로 분위기가 완성되지는 않습니다.
             <br />
-            하루가 달라집니다.
+            그래서 더 조심스럽게 판단합니다.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -263,11 +437,15 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-lg font-medium text-text-primary mb-4">키아라 천안의 기준</h3>
+            <h3 className="text-lg font-medium text-text-primary mb-4">KIIARA STANDARD</h3>
             <p className="text-text-secondary leading-loose">
               과하지 않게,
               <br />
-              시간이 지나도 자연스러운 인상.
+              시간이 지나도 부담되지 않는 인상
+              <br /><br />
+              유행보다 얼굴의 구조를 먼저 보고,
+              <br />
+              지금뿐 아니라 이후의 인상까지 고려합니다.
             </p>
           </motion.div>
         </div>
@@ -278,30 +456,30 @@ export default function Home() {
         <div className="text-center mb-16">
           <p className="text-sm tracking-widest text-green-secondary mb-4">BRAND PHILOSOPHY</p>
           <h2 className="text-2xl md:text-4xl font-light text-text-primary">
-            왜 자연스러움을 고집하나요
+            왜 &apos;자연스러움&apos;을 기준으로 삼을까요
           </h2>
         </div>
 
         <div className="max-w-2xl mx-auto">
           <p className="text-text-secondary leading-loose text-center mb-12">
-            자연스럽다는 말은 모호하지만,
+            &apos;자연스럽다&apos;는 말은 추상적이지만,
             <br />
             과하지 않다는 기준은 분명합니다.
             <br /><br />
-            트렌드보다 얼굴의 구조를 먼저 보고,
+            트렌드보다 개인의 얼굴 흐름을 먼저 살피고,
             <br />
-            유행보다 시간이 지나도 남는 인상을 선택합니다.
+            유행보다 오래 남는 인상을 선택합니다.
             <br /><br />
-            티가 나면 실패인 영역이기 때문에
+            티가 나는 선택은 시간이 지날수록 부담이 되기 때문에
             <br />
-            더욱 판단이 중요합니다.
+            결정 과정이 더욱 중요하다고 생각합니다.
           </p>
 
           <blockquote className="border-l-4 border-pink-primary pl-6 py-4 bg-pink-light/30">
             <p className="text-lg text-text-primary italic">
-              &quot;예뻐 보이는 건 순간이지만,
+              &quot;눈에 띄는 선택보다
               <br />
-              어색하지 않은 건 오래갑니다.&quot;
+              오래 봐도 편안한 판단이 중요합니다.&quot;
             </p>
           </blockquote>
         </div>
@@ -331,9 +509,9 @@ export default function Home() {
               viewport={{ once: true }}
               className="text-3xl sm:text-4xl font-semibold leading-tight text-neutral-900"
             >
-              여기서 받으면,
+              인상을 볼 때,
               <br />
-              인상이 정리됩니다
+              한 부분만 보지 않습니다
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -342,12 +520,12 @@ export default function Home() {
               viewport={{ once: true }}
               className="mt-4 text-base sm:text-lg text-neutral-600"
             >
-              예뻐 보이는 걸 넘어서,
+              인상은 여러 요소가 함께 만들어집니다.
               <br />
+              그래서{' '}
               <strong className="text-neutral-900">
-                사람 인상 자체가 좋아 보이게
-              </strong>{' '}
-              만드는 기준
+                전체 흐름을 기준으로 판단
+              </strong>합니다.
             </motion.p>
           </div>
 
@@ -361,14 +539,16 @@ export default function Home() {
               className="rounded-2xl border border-neutral-200 p-6"
             >
               <h3 className="text-lg font-semibold text-neutral-900">
-                전체 인상을
+                지금의 얼굴 흐름을
                 <br />
-                한 번에 봅니다
+                기준으로
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-neutral-600">
-                하나만 잘한다고 인상이 바뀌지 않습니다.
+                예쁘다는 기준보다 중요한 건
                 <br />
-                <strong className="text-neutral-900">같은 얼굴 안에서 함께 판단</strong>합니다.
+                현재의 얼굴 분위기와 조화로운지 여부입니다.
+                <br />
+                그래서 과한 선택은 처음부터 배제합니다.
               </p>
             </motion.div>
 
@@ -380,16 +560,16 @@ export default function Home() {
               className="rounded-2xl border border-neutral-200 p-6"
             >
               <h3 className="text-lg font-semibold text-neutral-900">
-                유행보다
+                시간이 지나도
                 <br />
-                지금 얼굴
+                부담되지 않게
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-neutral-600">
-                예쁜 디자인보다 중요한 건
+                결정의 기준은 지금보다 이후의 인상입니다.
                 <br />
-                지금 얼굴에 어울리는지 여부입니다.
+                오래 봐도 편안한 흐름을 목표로
                 <br />
-                그래서 과한 선택은 처음부터 배제합니다.
+                선택을 돕습니다.
               </p>
             </motion.div>
 
@@ -401,16 +581,14 @@ export default function Home() {
               className="rounded-2xl border border-neutral-200 p-6"
             >
               <h3 className="text-lg font-semibold text-neutral-900">
-                시간이 지나도
+                한 부분이 아닌
                 <br />
-                어색하지 않게
+                전체 조화
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-neutral-600">
-                처음보다 몇 달 뒤가 더 중요합니다.
+                하나만 잘한다고 분위기가 정리되지 않습니다.
                 <br />
-                오래 봐도 편안한 인상을 기준으로
-                <br />
-                결과를 남깁니다.
+                <strong className="text-neutral-900">같은 얼굴 안에서 함께 판단</strong>합니다.
               </p>
             </motion.div>
           </div>
@@ -427,16 +605,16 @@ export default function Home() {
               WHY HERE
             </p>
             <h3 className="mt-3 text-2xl font-semibold text-neutral-900">
-              여기서 받아야 하는 이유
+              왜 이 기준이 필요한가
             </h3>
             <p className="mx-auto mt-4 max-w-2xl text-sm sm:text-base leading-relaxed text-neutral-600">
-              잘하는 곳은 많습니다.
+              선택지는 많습니다.
               <br />
-              하지만 <strong className="text-neutral-900">인상을 판단할 수 있는 곳</strong>은 많지 않습니다.
+              하지만 <strong className="text-neutral-900">기준을 정리해 주는 곳</strong>은 많지 않습니다.
               <br /><br />
-              기술보다 먼저 얼굴을 보고,
+              기술보다 먼저 얼굴의 흐름을 살피고,
               <br />
-              지금보다 더 좋아질 지점이 있는지부터 판단합니다.
+              지금의 선택이 이후에도 부담되지 않을지부터 차분히 판단합니다.
             </p>
           </motion.div>
 
@@ -463,7 +641,7 @@ export default function Home() {
             <h2 className="text-2xl md:text-4xl font-light text-text-primary mb-2">
               권승주
               <br />
-              <span className="text-green-primary">인상을 자연스럽게 바꿉니다</span>
+              <span className="text-green-primary">인상을 기준으로 판단합니다</span>
             </h2>
             <p className="text-xs text-text-secondary/70 mb-8">키아라 천안</p>
 
@@ -499,7 +677,7 @@ export default function Home() {
         <div className="text-center mb-16">
           <p className="text-sm tracking-widest text-green-secondary mb-4">MENU</p>
           <h2 className="text-2xl md:text-4xl font-light text-text-primary">
-            무엇을 바꿀 수 있나요
+            어떤 선택을 도와드릴까요
           </h2>
         </div>
 
@@ -514,17 +692,17 @@ export default function Home() {
               쌩얼도 화장한 것처럼
             </p>
             <p className="text-text-secondary leading-relaxed mb-6">
-              눈썹 하나로 인상이 달라집니다.
+              눈썹은 인상의 기본 흐름을 정리합니다.
               <br />
-              메이크업 없이도 정돈된 얼굴을 만듭니다.
+              메이크업 없이도 정돈된 느낌을 줄 수 있습니다.
             </p>
             <ul className="text-sm text-text-secondary space-y-2 mb-8">
-              <li>• 각도는 인상을 바꾸고</li>
-              <li>• 두께는 신뢰를 만들며</li>
-              <li>• 컬러는 분위기를 결정합니다</li>
+              <li>• 각도는 인상의 방향을 정하고</li>
+              <li>• 두께는 신뢰감에 영향을 주며</li>
+              <li>• 컬러는 전체 분위기를 결정합니다</li>
             </ul>
             <Button href="/eyebrow" variant="outline" size="sm">
-              before &amp; after 보기
+              작업 예시 보기
             </Button>
           </motion.div>
 
@@ -538,21 +716,24 @@ export default function Home() {
               립 바르면 더 잘 어울리는 입술
             </p>
             <p className="text-text-secondary leading-relaxed mb-6">
-              쌩얼에도 괜히 예뻐 보이는 입술,
+              입술은 전체 인상의 마무리를 담당합니다.
               <br />
-              메이크업이 완성되는 느낌을 만듭니다.
+              메이크업과 조화로운 흐름을 만들어줍니다.
             </p>
             <ul className="text-sm text-text-secondary space-y-2 mb-8">
               <li>• 불필요한 색은 정리하고</li>
-              <li>• 피부 톤에 맞춰 정돈하고</li>
+              <li>• 피부 톤과 조화를 맞추고</li>
               <li>• 시간이 지나도 부담 없는 상태로</li>
             </ul>
             <Button href="/lip-blush" variant="secondary" size="sm">
-              before &amp; after 보기
+              작업 예시 보기
             </Button>
           </motion.div>
         </div>
       </Section>
+
+      {/* 30초 구조진단 */}
+      <DiagnosisQuiz />
 
       {/* Recommended For */}
       <Section background="pink">
@@ -565,10 +746,10 @@ export default function Home() {
 
         <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
           {[
-            '쌩얼이 늘 마음에 걸리는 분',
-            '나이 들어 보인다는 말을 듣는 분',
-            '사진 찍을 때 인상이 아쉬운 분',
-            '메이크업 없이도 정돈된 얼굴을 원하는 분',
+            '기준 없이 선택하기 어려운 분',
+            '과한 결과가 걱정되는 분',
+            '자연스러운 흐름을 원하는 분',
+            '오래 봐도 부담 없는 인상을 원하는 분',
           ].map((item, index) => (
             <motion.div
               key={index}
@@ -593,9 +774,9 @@ export default function Home() {
         <div className="text-center">
           <p className="text-white/70 text-sm tracking-widest mb-6">CONTACT</p>
           <h2 className="text-2xl md:text-4xl font-light text-white mb-8 leading-relaxed">
-            지금의 얼굴을
+            기준이 필요하다면
             <br />
-            조금 더 정리하고 싶다면
+            편하게 문의해 주세요
           </h2>
           <Button href="/contact" variant="secondary" size="lg" trackClick trackMemo="하단 CTA">
             상담 문의
