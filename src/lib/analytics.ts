@@ -28,7 +28,6 @@ interface SessionData {
 }
 
 let sessionData: SessionData | null = null;
-let isSending = false;
 
 function getSessionData(): SessionData {
   if (!sessionData) {
@@ -123,6 +122,8 @@ export function trackCTAClick(_페이지: string, 메모?: string): void {
   if (메모 && !data.memos.includes(메모)) {
     data.memos.push(메모);
   }
+  // CTA 클릭 시 바로 전송
+  sendSessionData();
 }
 
 // 문의 완료 기록
@@ -150,11 +151,10 @@ export function trackInquiryComplete(_페이지: string, 메모?: string): void 
 
 // 세션 데이터를 구글 시트로 전송
 export function sendSessionData(): void {
-  if (!GOOGLE_SHEET_URL || !sessionData || isSending) {
+  if (!GOOGLE_SHEET_URL || !sessionData) {
     return;
   }
 
-  isSending = true;
   const data = sessionData;
 
   // URL 파라미터 생성 (이모지 대신 텍스트 사용)
