@@ -157,25 +157,23 @@ export function sendSessionData(): void {
   isSending = true;
   const data = sessionData;
 
+  // URL 파라미터 생성 (이모지 대신 텍스트 사용)
   const params = new URLSearchParams();
   params.append('sessionId', data.sessionId);
   params.append('date', data.date);
   params.append('source', data.source);
   params.append('campaign', data.campaign);
-  params.append('pages', data.pages.join(' → '));  // 페이지 경로를 화살표로 연결
-  params.append('maxScroll', `${data.maxScroll}%`);
-  params.append('clicked', data.clicked ? '✅' : '❌');
-  params.append('inquiry', data.inquiry ? '✅' : '❌');
+  params.append('pages', data.pages.join(' > '));
+  params.append('maxScroll', String(data.maxScroll));
+  params.append('clicked', data.clicked ? 'O' : 'X');
+  params.append('inquiry', data.inquiry ? 'O' : 'X');
   params.append('memo', data.memos.join(', '));
 
-  // navigator.sendBeacon 사용 (페이지 떠날 때도 확실히 전송)
   const url = `${GOOGLE_SHEET_URL}?${params.toString()}`;
 
-  if (navigator.sendBeacon) {
-    navigator.sendBeacon(url);
-  } else {
-    fetch(url, { method: 'GET', mode: 'no-cors', keepalive: true });
-  }
+  // 이미지 태그로 GET 요청 (가장 확실한 방법)
+  const img = new Image();
+  img.src = url;
 }
 
 // 스크롤 깊이 추적 (기존 호환성 유지)
