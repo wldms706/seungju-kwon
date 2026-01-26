@@ -133,6 +133,17 @@ export function trackInquiryComplete(_페이지: string, 메모?: string): void 
   if (메모 && !data.memos.includes(메모)) {
     data.memos.push(메모);
   }
+
+  // Meta Pixel 전환 이벤트 전송
+  if (typeof window !== 'undefined' && (window as typeof window & { fbq?: (...args: unknown[]) => void }).fbq) {
+    const fbq = (window as typeof window & { fbq: (...args: unknown[]) => void }).fbq;
+    // Lead 이벤트: 잠재고객 확보 (문의 클릭)
+    fbq('track', 'Lead', {
+      content_name: 메모 || '문의',
+      content_category: _페이지,
+    });
+  }
+
   // 문의 완료 시 즉시 전송
   sendSessionData();
 }
