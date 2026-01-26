@@ -348,9 +348,9 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-3xl md:text-5xl lg:text-6xl font-light leading-tight mb-8 text-white"
           >
-            인상은
+            2026년,
             <br />
-            <span className="font-medium">하루의 분위기를 만듭니다</span>
+            <span className="font-medium">운세보다 확실한 변화</span>
           </motion.h1>
 
           <motion.p
@@ -359,9 +359,9 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="text-base md:text-lg text-white/90 max-w-xl mx-auto mb-12 leading-relaxed"
           >
-            과하지 않게,
+            새해엔 눈썹 하나로
             <br />
-            오래 봐도 편안한 인상을 기준으로 선택을 돕습니다.
+            인상부터 정리하세요.
           </motion.p>
 
           <motion.div
