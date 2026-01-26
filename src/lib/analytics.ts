@@ -25,6 +25,7 @@ interface SessionData {
   clicked: boolean;       // CTA 클릭 여부
   inquiry: boolean;       // 문의 여부
   memos: string[];        // 메모들
+  sent: boolean;          // 이미 전송했는지 여부
 }
 
 let sessionData: SessionData | null = null;
@@ -42,6 +43,7 @@ function getSessionData(): SessionData {
       clicked: false,
       inquiry: false,
       memos: [],
+      sent: false,
     };
   }
   return sessionData;
@@ -115,15 +117,14 @@ export function trackScroll(depth: number): void {
   }
 }
 
-// CTA 클릭 기록
+// CTA 클릭 기록 (전송하지 않고 데이터만 기록)
 export function trackCTAClick(_페이지: string, 메모?: string): void {
   const data = getSessionData();
   data.clicked = true;
   if (메모 && !data.memos.includes(메모)) {
     data.memos.push(메모);
   }
-  // CTA 클릭 시 바로 전송
-  sendSessionData();
+  // 페이지 이탈 시 최종 전송됨
 }
 
 // 문의 완료 기록
@@ -144,17 +145,17 @@ export function trackInquiryComplete(_페이지: string, 메모?: string): void 
       content_category: _페이지,
     });
   }
-
-  // 문의 완료 시 즉시 전송
-  sendSessionData();
+  // 페이지 이탈 시 최종 전송됨
 }
 
-// 세션 데이터를 구글 시트로 전송
+// 세션 데이터를 구글 시트로 전송 (한 세션당 한 번만)
 export function sendSessionData(): void {
-  if (!GOOGLE_SHEET_URL || !sessionData) {
+  if (!GOOGLE_SHEET_URL || !sessionData || sessionData.sent) {
     return;
   }
 
+  // 전송 완료 표시
+  sessionData.sent = true;
   const data = sessionData;
 
   // URL 파라미터 생성 (이모지 대신 텍스트 사용)
@@ -201,7 +202,7 @@ export function trackScrollDepth(callback: (depth: number) => void): () => void 
   return () => window.removeEventListener('scroll', handleScroll);
 }
 
-// 페이지 떠날 때 전송 설정
+// 페이지 떠날 때 전송 설정 (사이트 완전히 이탈 시에만)
 export function setupBeforeUnload(): void {
   if (typeof window === 'undefined') return;
 
@@ -209,13 +210,10 @@ export function setupBeforeUnload(): void {
     sendSessionData();
   };
 
+  // beforeunload: 브라우저/탭 닫을 때
   window.addEventListener('beforeunload', handleUnload);
+  // pagehide: 모바일에서 페이지 떠날 때 (더 확실함)
   window.addEventListener('pagehide', handleUnload);
-  document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'hidden') {
-      sendSessionData();
-    }
-  });
 }
 
 // 기존 sendBehaviorLog 함수 (호환성 유지 - 이제 세션에 기록만 함)
