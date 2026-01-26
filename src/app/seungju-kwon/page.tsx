@@ -81,8 +81,60 @@ export default function SeungjuKwonPage() {
         </div>
       </Section>
 
-      {/* Philosophy */}
+      {/* Process - 시술 과정 */}
       <Section background="pink">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <p className="text-sm tracking-widest text-green-secondary mb-4">PROCESS</p>
+            <h2 className="text-2xl md:text-3xl font-light text-text-primary">
+              시술 과정
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="relative aspect-[3/4] overflow-hidden rounded-lg"
+            >
+              <Image
+                src="/process/design.jpg"
+                alt="눈썹 디자인 과정"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-6">
+                <p className="text-white font-medium">디자인</p>
+                <p className="text-white/80 text-sm">얼굴형에 맞춰 눈썹 라인을 설계합니다</p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="relative aspect-[3/4] overflow-hidden rounded-lg"
+            >
+              <Image
+                src="/process/procedure.jpg"
+                alt="시술 과정"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-6">
+                <p className="text-white font-medium">시술</p>
+                <p className="text-white/80 text-sm">섬세하게 한 올 한 올 작업합니다</p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </Section>
+
+      {/* Philosophy */}
+      <Section background="white">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-12">
             <p className="text-sm tracking-widest text-green-secondary mb-4">PHILOSOPHY</p>
