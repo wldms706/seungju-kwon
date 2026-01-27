@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상담 문의 | 권승주 눈썹·입술 인상 설계</title>
+    <meta name="description" content="권승주 눈썹·입술 인상 설계 무료 상담 신청. 천안 불당동.">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-green: #2F5D50;
+            --brand-sage: #6F8F86;
+            --brand-pink: #C48A9A;
+            --brand-pink-soft: #F2E6EA;
+            --ink: #1E1E1E;
+            --muted: #6B6B6B;
+            --line: #E6E6E6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: #FAFAFA;
+            color: var(--ink);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(900px 500px at 20% 10%, rgba(196,138,154,0.22), transparent 60%),
+                radial-gradient(900px 500px at 80% 0%, rgba(47,93,80,0.18), transparent 55%);
+        }
+
+        .hero-content {
+            position: relative;
+            padding: 48px 0 40px;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            border: 1px solid var(--line);
+            border-radius: 50px;
+            padding: 4px 12px;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--brand-pink);
+            border-radius: 50%;
+        }
+
+        .hero h1 {
+            margin-top: 20px;
+            font-size: clamp(24px, 5vw, 36px);
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-desc {
+            margin-top: 12px;
+            font-size: clamp(14px, 2.5vw, 16px);
+            line-height: 1.8;
+            color: var(--muted);
+        }
+
+        /* Form Section */
+        .form-section {
+            padding: 48px 0 64px;
+        }
+
+        .form-card {
+            background: white;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 32px 24px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 8px;
+        }
+
+        .form-label .required {
+            color: var(--brand-pink);
+            margin-left: 2px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 15px;
+            font-family: 'Noto Sans KR', sans-serif;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: #FAFAFA;
+            color: var(--ink);
+            transition: border-color 0.2s;
+            outline: none;
+        }
+
+        .form-input:focus {
+            border-color: var(--brand-green);
+            background: white;
+        }
+
+        .form-input::placeholder {
+            color: #B0B0B0;
+        }
+
+        textarea.form-input {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Radio Group */
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .radio-option {
+            position: relative;
+        }
+
+        .radio-option input {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .radio-option label {
+            display: inline-block;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            border: 1px solid var(--line);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--muted);
+            background: #FAFAFA;
+        }
+
+        .radio-option input:checked + label {
+            background: var(--brand-green);
+            color: white;
+            border-color: var(--brand-green);
+        }
+
+        .radio-option label:hover {
+            border-color: var(--brand-sage);
+        }
+
+        /* Submit Button */
+        .btn-submit {
+            display: block;
+            width: 100%;
+            margin-top: 32px;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: 'Noto Sans KR', sans-serif;
+            background: var(--brand-green);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-submit:hover {
+            background: #254a40;
+        }
+
+        .btn-submit:disabled {
+            background: var(--brand-sage);
+            cursor: not-allowed;
+        }
+
+        /* Privacy */
+        .privacy-note {
+            margin-top: 16px;
+            font-size: 12px;
+            color: var(--muted);
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 32px 0;
+            text-align: center;
+            border-top: 1px solid var(--line);
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        /* Error */
+        .form-error {
+            display: none;
+            margin-top: 6px;
+            font-size: 12px;
+            color: #D94848;
+        }
+
+        .form-group.error .form-error {
+            display: block;
+        }
+
+        .form-group.error .form-input {
+            border-color: #D94848;
+        }
+
+        @media (max-width: 640px) {
+            .form-card {
+                padding: 24px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="badge">
+                    <span class="badge-dot"></span>
+                    무료 상담
+                </div>
+                <h1>상담 신청</h1>
+                <p class="hero-desc">
+                    궁금한 점이 있으시면 편하게 남겨주세요.<br>
+                    확인 후 연락드리겠습니다.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form -->
+    <section class="form-section">
+        <div class="container">
+            <form id="contactForm" class="form-card" novalidate>
+                <div class="form-group">
+                    <label class="form-label">이름 <span class="required">*</span></label>
+                    <input type="text" name="name" class="form-input" placeholder="이름을 입력해주세요" required>
+                    <p class="form-error">이름을 입력해주세요.</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">연락처 <span class="required">*</span></label>
+                    <input type="tel" name="phone" class="form-input" placeholder="010-0000-0000" required>
+                    <p class="form-error">연락처를 입력해주세요.</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">관심 시술 <span class="required">*</span></label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="service" id="svc-eyebrow" value="눈썹" required>
+                            <label for="svc-eyebrow">눈썹</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="service" id="svc-lip" value="입술">
+                            <label for="svc-lip">입술</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="service" id="svc-lash" value="속눈썹 뷰러펌">
+                            <label for="svc-lash">속눈썹 뷰러펌</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="service" id="svc-other" value="기타">
+                            <label for="svc-other">기타</label>
+                        </div>
+                    </div>
+                    <p class="form-error">관심 시술을 선택해주세요.</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">문의 내용</label>
+                    <textarea name="message" class="form-input" placeholder="궁금한 점이 있으시면 자유롭게 남겨주세요 (선택)"></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">상담 신청하기</button>
+                <p class="privacy-note">입력하신 정보는 상담 목적으로만 사용되며, 상담 완료 후 파기됩니다.</p>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            KIARA BROW · 권승주
+        </div>
+    </footer>
+
+    <script>
+    (function() {
+        const form = document.getElementById('contactForm');
+        const submitBtn = form.querySelector('.btn-submit');
+
+        // ============================================================
+        // Google Apps Script 웹 앱 URL을 여기에 붙여넣으세요
+        // ============================================================
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzupk_TtbiF94aW4QhqS3M8FZg4gp7xAr2SbyFW72Rby5BLxywZruPTn9E9ahKIm44jvQ/exec';
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Validate
+            let valid = true;
+
+            const name = form.querySelector('[name="name"]');
+            const phone = form.querySelector('[name="phone"]');
+            const service = form.querySelector('[name="service"]:checked');
+
+            // Reset errors
+            form.querySelectorAll('.form-group').forEach(g => g.classList.remove('error'));
+
+            if (!name.value.trim()) {
+                name.closest('.form-group').classList.add('error');
+                valid = false;
+            }
+
+            if (!phone.value.trim()) {
+                phone.closest('.form-group').classList.add('error');
+                valid = false;
+            }
+
+            if (!service) {
+                form.querySelector('[name="service"]').closest('.form-group').classList.add('error');
+                valid = false;
+            }
+
+            if (!valid) return;
+
+            // Disable button
+            submitBtn.disabled = true;
+            submitBtn.textContent = '전송 중...';
+
+            const data = {
+                name: name.value.trim(),
+                phone: phone.value.trim(),
+                service: service ? service.value : '',
+                message: form.querySelector('[name="message"]').value.trim(),
+                timestamp: new Date().toLocaleString('ko-KR')
+            };
+
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(function() {
+                // no-cors 모드에서는 응답을 읽을 수 없으므로 바로 리다이렉트
+                window.location.href = 'thank-you.html';
+            })
+            .catch(function() {
+                alert('전송 중 문제가 발생했습니다. 잠시 후 다시 시도해주세요.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = '상담 신청하기';
+            });
+        });
+    })();
+    </script>
+</body>
+</html>

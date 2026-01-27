@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상담 신청 완료 | 권승주</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-green: #2F5D50;
+            --brand-sage: #6F8F86;
+            --brand-pink: #C48A9A;
+            --brand-pink-soft: #F2E6EA;
+            --ink: #1E1E1E;
+            --muted: #6B6B6B;
+            --line: #E6E6E6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: #FAFAFA;
+            color: var(--ink);
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 0 16px;
+            width: 100%;
+        }
+
+        .thankyou {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 64px 0;
+        }
+
+        .thankyou-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--brand-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+        }
+
+        .thankyou-icon svg {
+            width: 32px;
+            height: 32px;
+            stroke: white;
+            stroke-width: 2.5;
+            fill: none;
+        }
+
+        .thankyou h1 {
+            font-size: clamp(24px, 5vw, 32px);
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .thankyou p {
+            margin-top: 12px;
+            font-size: clamp(14px, 2.5vw, 16px);
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .thankyou .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 32px;
+            padding: 12px 28px;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 50px;
+            text-decoration: none;
+            background: white;
+            color: var(--ink);
+            border: 1px solid var(--line);
+            transition: border-color 0.2s;
+        }
+
+        .thankyou .btn:hover {
+            border-color: var(--muted);
+        }
+
+        .footer {
+            padding: 32px 0;
+            text-align: center;
+            border-top: 1px solid var(--line);
+            font-size: 12px;
+            color: var(--muted);
+        }
+    </style>
+
+    <!-- ==============================================
+         전환 픽셀을 아래에 추가하세요
+         ============================================== -->
+
+    <!-- Meta (Facebook) Pixel — 기본 코드 -->
+    <!--
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'YOUR_PIXEL_ID');
+    fbq('track', 'Lead');
+    </script>
+    -->
+
+    <!-- Google Ads 전환 추적 -->
+    <!--
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-XXXXXXXXX"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-XXXXXXXXX');
+    gtag('event', 'conversion', {'send_to': 'AW-XXXXXXXXX/YYYYYY'});
+    </script>
+    -->
+
+    <!-- 카카오 픽셀 -->
+    <!--
+    <script src="//t1.daumcdn.net/kas/static/kp.js"></script>
+    <script>
+    kakaoPixel('YOUR_KAKAO_PIXEL_ID').completeRegistration();
+    </script>
+    -->
+
+</head>
+<body>
+    <section class="thankyou">
+        <div class="container">
+            <div class="thankyou-icon">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            <h1>상담 신청이 완료되었습니다</h1>
+            <p>
+                확인 후 빠르게 연락드리겠습니다.<br>
+                감사합니다.
+            </p>
+            <a href="/" class="btn">홈으로 돌아가기</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            KIARA BROW · 권승주
+        </div>
+    </footer>
+</body>
+</html>
