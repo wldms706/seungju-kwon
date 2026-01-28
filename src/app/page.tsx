@@ -75,6 +75,10 @@ function ContactForm() {
         timestamp: new Date().toLocaleString('ko-KR'),
       }),
     });
+    // Meta Pixel 전환 이벤트
+    if (typeof window !== 'undefined' && typeof (window as any).fbq === 'function') {
+      (window as any).fbq('track', 'Lead');
+    }
     setIsComplete(true);
   };
 
