@@ -138,7 +138,7 @@ export default function ContactPage() {
               viewport={{ once: true }}
               className="text-2xl md:text-3xl font-light text-text-primary"
             >
-              무료 상담 신청
+              무료 디자인 상담 신청
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -147,7 +147,7 @@ export default function ContactPage() {
               viewport={{ once: true }}
               className="mt-3 text-text-secondary text-sm"
             >
-              홈페이지에서 신청하시면 무료 상담을 도와드립니다.
+              방문 시 무료 디자인 상담과 시뮬레이션을 제공합니다.
             </motion.p>
           </div>
 
@@ -232,7 +232,7 @@ export default function ContactPage() {
                 type="submit"
                 className="w-full py-4 rounded-full bg-green-primary text-white font-semibold text-base hover:bg-green-primary/90 transition-colors"
               >
-                상담 신청하기
+                무료 디자인 상담 신청하기
               </button>
               <p className="mt-4 text-center text-xs text-text-secondary">
                 입력하신 정보는 상담 목적으로만 사용되며, 상담 완료 후 파기됩니다.
@@ -251,12 +251,12 @@ export default function ContactPage() {
                 </svg>
               </div>
               <h3 className="text-xl md:text-2xl font-medium text-text-primary mb-4">
-                상담 신청이 완료되었습니다
+                신청이 완료되었습니다
               </h3>
               <p className="text-text-secondary leading-relaxed">
-                확인 후 빠르게 연락드리겠습니다.
+                방문 일정 조율을 위해 빠르게 연락드리겠습니다.
                 <br />
-                감사합니다.
+                무료 디자인 상담과 시뮬레이션을 준비해두겠습니다.
               </p>
             </motion.div>
           )}
