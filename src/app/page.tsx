@@ -34,61 +34,58 @@ const portfolioImages = [
 
 const INITIAL_DISPLAY_COUNT = 6;
 
-const diagnosisQuestions = [
-  {
-    question: '눈썹문신을 고민할 때\n가장 불안한 건 무엇인가요?',
-    options: [
-      '너무 진해질까 봐',
-      '내 얼굴에 안 어울릴까 봐',
-      '전에 했던 경험이 별로라서',
-      '어떤 기준으로 골라야 할지 몰라서',
-    ],
-  },
-  {
-    question: '눈썹문신 샵을 볼 때\n가장 헷갈리는 포인트는?',
-    options: [
-      '전후 사진은 많은데 기준이 없다',
-      '말이 다 달라서 판단이 어렵다',
-      '상담 때랑 결과가 다를까 봐',
-      '내 얼굴 얘기는 안 해주는 것 같다',
-    ],
-  },
-  {
-    question: '지금 이 페이지를 보고 있는 이유는?',
-    options: [
-      '처음이라 기준이 필요해서',
-      '다시 하기 전이라 더 신중해서',
-      '여러 곳을 비교 중이라서',
-      '그냥 정보부터 보고 싶어서',
-    ],
-  },
-];
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzupk_TtbiF94aW4QhqS3M8FZg4gp7xAr2SbyFW72Rby5BLxywZruPTn9E9ahKIm44jvQ/exec';
 
-function DiagnosisQuiz() {
-  const [currentStep, setCurrentStep] = useState(0);
-  const [answers, setAnswers] = useState<number[]>([]);
+const serviceOptions = ['눈썹', '입술', '속눈썹 뷰러펌', '기타'];
+
+function ContactForm() {
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    service: '',
+    message: '',
+  });
+  const [errors, setErrors] = useState<Record<string, boolean>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
 
-  const handleSelect = (optionIndex: number) => {
-    const newAnswers = [...answers, optionIndex];
-    setAnswers(newAnswers);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-    if (currentStep < diagnosisQuestions.length - 1) {
-      setTimeout(() => setCurrentStep(currentStep + 1), 300);
-    } else {
-      setTimeout(() => setIsComplete(true), 300);
+    const newErrors: Record<string, boolean> = {};
+    if (!formData.name.trim()) newErrors.name = true;
+    if (!formData.phone.trim()) newErrors.phone = true;
+    if (!formData.service) newErrors.service = true;
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
     }
-  };
 
-  const resetQuiz = () => {
-    setCurrentStep(0);
-    setAnswers([]);
-    setIsComplete(false);
+    setIsSubmitting(true);
+    setErrors({});
+
+    try {
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          timestamp: new Date().toLocaleString('ko-KR'),
+        }),
+      });
+      setIsComplete(true);
+    } catch {
+      alert('전송 중 문제가 발생했습니다. 잠시 후 다시 시도해주세요.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <section className="py-16 md:py-24 bg-gradient-to-b from-neutral-50 to-white">
-      <div className="max-w-2xl mx-auto px-4">
+      <div className="max-w-xl mx-auto px-4">
         <div className="text-center mb-10">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -97,7 +94,7 @@ function DiagnosisQuiz() {
             viewport={{ once: true }}
             className="text-sm tracking-widest text-green-secondary mb-3"
           >
-            30초 구조진단
+            CONTACT
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -106,56 +103,112 @@ function DiagnosisQuiz() {
             viewport={{ once: true }}
             className="text-2xl md:text-3xl font-light text-text-primary"
           >
-            나에게 맞는 기준 찾기
+            무료 상담 신청
           </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="mt-3 text-text-secondary text-sm"
+          >
+            홈페이지에서 신청하시면 무료 상담을 도와드립니다.
+          </motion.p>
         </div>
 
         {!isComplete ? (
-          <motion.div
-            key={currentStep}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            transition={{ duration: 0.3 }}
+          <motion.form
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            onSubmit={handleSubmit}
             className="bg-white rounded-2xl shadow-lg p-6 md:p-10"
           >
-            {/* Progress */}
-            <div className="flex items-center justify-between mb-8">
-              <span className="text-sm text-neutral-500">
-                Q{currentStep + 1}
-              </span>
-              <div className="flex gap-2">
-                {diagnosisQuestions.map((_, idx) => (
-                  <div
-                    key={idx}
-                    className={`w-8 h-1 rounded-full transition-colors ${
-                      idx <= currentStep ? 'bg-green-primary' : 'bg-neutral-200'
+            {/* 이름 */}
+            <div className="mb-6">
+              <label className="block text-sm font-semibold text-text-primary mb-2">
+                이름 <span className="text-pink-primary">*</span>
+              </label>
+              <input
+                type="text"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                placeholder="이름을 입력해주세요"
+                className={`w-full px-4 py-3 rounded-xl border bg-neutral-50 text-text-primary outline-none transition-colors focus:bg-white focus:border-green-primary ${
+                  errors.name ? 'border-red-400' : 'border-neutral-200'
+                }`}
+              />
+              {errors.name && <p className="mt-1 text-xs text-red-400">이름을 입력해주세요.</p>}
+            </div>
+
+            {/* 연락처 */}
+            <div className="mb-6">
+              <label className="block text-sm font-semibold text-text-primary mb-2">
+                연락처 <span className="text-pink-primary">*</span>
+              </label>
+              <input
+                type="tel"
+                value={formData.phone}
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                placeholder="010-0000-0000"
+                className={`w-full px-4 py-3 rounded-xl border bg-neutral-50 text-text-primary outline-none transition-colors focus:bg-white focus:border-green-primary ${
+                  errors.phone ? 'border-red-400' : 'border-neutral-200'
+                }`}
+              />
+              {errors.phone && <p className="mt-1 text-xs text-red-400">연락처를 입력해주세요.</p>}
+            </div>
+
+            {/* 관심 시술 */}
+            <div className="mb-6">
+              <label className="block text-sm font-semibold text-text-primary mb-2">
+                관심 시술 <span className="text-pink-primary">*</span>
+              </label>
+              <div className="flex flex-wrap gap-2">
+                {serviceOptions.map((option) => (
+                  <button
+                    key={option}
+                    type="button"
+                    onClick={() => setFormData({ ...formData, service: option })}
+                    className={`px-4 py-2 rounded-full text-sm font-medium border transition-all ${
+                      formData.service === option
+                        ? 'bg-green-primary text-white border-green-primary'
+                        : 'bg-neutral-50 text-text-secondary border-neutral-200 hover:border-green-secondary'
                     }`}
-                  />
+                  >
+                    {option}
+                  </button>
                 ))}
               </div>
+              {errors.service && <p className="mt-1 text-xs text-red-400">관심 시술을 선택해주세요.</p>}
             </div>
 
-            {/* Question */}
-            <h3 className="text-lg md:text-xl font-medium text-text-primary mb-8 whitespace-pre-line leading-relaxed">
-              {diagnosisQuestions[currentStep].question}
-            </h3>
-
-            {/* Options */}
-            <div className="space-y-3">
-              {diagnosisQuestions[currentStep].options.map((option, idx) => (
-                <motion.button
-                  key={idx}
-                  whileHover={{ scale: 1.01 }}
-                  whileTap={{ scale: 0.99 }}
-                  onClick={() => handleSelect(idx)}
-                  className="w-full text-left p-4 rounded-xl border border-neutral-200 hover:border-green-primary hover:bg-green-primary/5 transition-all text-text-secondary hover:text-text-primary"
-                >
-                  {option}
-                </motion.button>
-              ))}
+            {/* 문의 내용 */}
+            <div className="mb-8">
+              <label className="block text-sm font-semibold text-text-primary mb-2">
+                문의 내용
+              </label>
+              <textarea
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                placeholder="궁금한 점이 있으시면 자유롭게 남겨주세요 (선택)"
+                rows={3}
+                className="w-full px-4 py-3 rounded-xl border border-neutral-200 bg-neutral-50 text-text-primary outline-none transition-colors focus:bg-white focus:border-green-primary resize-none"
+              />
             </div>
-          </motion.div>
+
+            {/* 제출 */}
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full py-4 rounded-full bg-green-primary text-white font-semibold text-base hover:bg-green-primary/90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              {isSubmitting ? '전송 중...' : '상담 신청하기'}
+            </button>
+            <p className="mt-4 text-center text-xs text-text-secondary">
+              입력하신 정보는 상담 목적으로만 사용되며, 상담 완료 후 파기됩니다.
+            </p>
+          </motion.form>
         ) : (
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -164,43 +217,18 @@ function DiagnosisQuiz() {
             className="bg-white rounded-2xl shadow-lg p-6 md:p-10 text-center"
           >
             <div className="w-16 h-16 bg-green-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg
-                className="w-8 h-8 text-green-primary"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 13l4 4L19 7"
-                />
+              <svg className="w-8 h-8 text-green-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
             <h3 className="text-xl md:text-2xl font-medium text-text-primary mb-4">
-              고민을 확인했어요
+              상담 신청이 완료되었습니다
             </h3>
-            <p className="text-text-secondary leading-relaxed mb-8">
-              이런 고민을 가진 분들께
+            <p className="text-text-secondary leading-relaxed">
+              확인 후 빠르게 연락드리겠습니다.
               <br />
-              기준을 알려드리고 있습니다.
-              <br /><br />
-              <span className="text-text-primary font-medium">
-                과하지 않게, 시간이 지나도 자연스럽게.
-              </span>
+              감사합니다.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Button href="/contact" size="lg" trackClick trackMemo="구조진단 완료 CTA">
-                상담 문의하기
-              </Button>
-              <button
-                onClick={resetQuiz}
-                className="px-6 py-3 rounded-full text-text-secondary hover:text-text-primary hover:bg-neutral-100 transition-colors"
-              >
-                다시 해보기
-              </button>
-            </div>
           </motion.div>
         )}
       </div>
@@ -732,8 +760,8 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* 30초 구조진단 */}
-      <DiagnosisQuiz />
+      {/* 상담 신청 폼 */}
+      <ContactForm />
 
       {/* Recommended For */}
       <Section background="pink">
