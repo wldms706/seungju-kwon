@@ -65,22 +65,17 @@ function ContactForm() {
     setIsSubmitting(true);
     setErrors({});
 
-    try {
-      await fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...formData,
-          timestamp: new Date().toLocaleString('ko-KR'),
-        }),
-      });
-      setIsComplete(true);
-    } catch {
-      alert('전송 중 문제가 발생했습니다. 잠시 후 다시 시도해주세요.');
-    } finally {
-      setIsSubmitting(false);
-    }
+    // 응답을 기다리지 않고 바로 완료 화면으로 전환
+    fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        ...formData,
+        timestamp: new Date().toLocaleString('ko-KR'),
+      }),
+    });
+    setIsComplete(true);
   };
 
   return (
