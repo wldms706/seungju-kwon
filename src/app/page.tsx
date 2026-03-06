@@ -366,7 +366,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-sm tracking-widest text-white/80 mb-6"
           >
-            키아라 천안
+            천안자연눈썹 키아라
           </motion.p>
 
           <motion.h1
@@ -375,9 +375,9 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-3xl md:text-5xl lg:text-6xl font-light leading-tight mb-8 text-white"
           >
-            2026년,
+            작은 변화로
             <br />
-            <span className="font-medium">운세보다 확실한 변화</span>
+            <span className="font-medium">만족스러운 일상을 경험해보세요</span>
           </motion.h1>
 
           <motion.p
@@ -386,9 +386,9 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="text-base md:text-lg text-white/90 max-w-xl mx-auto mb-12 leading-relaxed"
           >
-            새해엔 눈썹 하나로
+            자연스럽게, 티 나지 않게
             <br />
-            인상부터 정리하세요.
+            얼굴에 맞는 눈썹을 설계합니다
           </motion.p>
 
           <motion.div
