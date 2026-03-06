@@ -5,9 +5,12 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "키아라 천안 | 눈썹 인상 디자인 스튜디오",
-  description: "자연스럽게 인상이 정돈되는 눈썹 이미지 케어 공간",
-  keywords: ["키아라 천안", "천안 키아라", "천안 눈썹문신 키아라", "천안 반영구", "천안 눈썹문신"],
+  title: {
+    default: "천안자연눈썹 키아라 | 반영구 눈썹 · 인상 설계 전문",
+    template: "%s | 천안자연눈썹 키아라",
+  },
+  description: "천안자연눈썹 전문 키아라. 천안반영구, 자연눈썹, 남자눈썹까지. 얼굴형에 맞는 자연스러운 눈썹 인상 설계. 천안시 서북구 위치.",
+  keywords: ["천안자연눈썹", "천안반영구", "천안 자연눈썹", "천안 반영구 눈썹", "천안 남자눈썹", "키아라 천안", "천안 키아라", "천안 눈썹 반영구", "천안입술"],
   icons: {
     icon: { url: "/favicon.svg?v=3", type: "image/svg+xml" },
   },
@@ -19,8 +22,9 @@ export const metadata: Metadata = {
     canonical: "https://browartist-kwon.co.kr/",
   },
   openGraph: {
-    title: "키아라 천안 | 눈썹 인상 디자인 스튜디오",
-    description: "자연스럽게 인상이 정돈되는 눈썹 이미지 케어 공간",
+    siteName: "천안자연눈썹 키아라",
+    title: "천안자연눈썹 키아라 | 반영구 눈썹 · 인상 설계 전문",
+    description: "천안자연눈썹 전문 키아라. 천안반영구, 자연눈썹, 남자눈썹까지. 얼굴형에 맞는 자연스러운 눈썹 인상 설계.",
     url: "https://browartist-kwon.co.kr/",
     locale: "ko_KR",
     type: "website",
