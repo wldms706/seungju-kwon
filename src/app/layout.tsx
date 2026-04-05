@@ -45,6 +45,83 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BeautySalon",
+              "name": "천안자연눈썹 키아라",
+              "description": "천안자연눈썹 전문 키아라. 천안반영구, 자연눈썹, 남자눈썹까지. 얼굴형에 맞는 자연스러운 눈썹 인상 설계.",
+              "url": "https://browartist-kwon.co.kr",
+              "telephone": "",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "천안시",
+                "addressRegion": "충청남도",
+                "addressCountry": "KR",
+                "streetAddress": "서북구 불당동"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 36.8151,
+                "longitude": 127.1139
+              },
+              "openingHoursSpecification": {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+                "opens": "10:00",
+                "closes": "19:00"
+              },
+              "priceRange": "$$",
+              "image": "https://browartist-kwon.co.kr/profile.jpeg",
+              "sameAs": []
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "천안자연눈썹 시술 시간은 얼마나 걸리나요?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "상담 포함 약 1시간 30분~2시간 정도 소요됩니다. 얼굴형과 골격에 맞는 디자인 상담 후 진행합니다."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "천안자연눈썹 유지 기간은 얼마나 되나요?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "개인 피부 타입에 따라 다르지만 보통 1년~2년 정도 유지됩니다. 자연스럽게 옅어지며 리터치로 유지할 수 있습니다."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "남자도 눈썹 시술 가능한가요?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "네, 남자 눈썹도 전문적으로 시술합니다. 자연스럽고 티 나지 않는 남자 눈썹 디자인을 제공합니다."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "키아라 천안 위치가 어디인가요?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "충청남도 천안시 서북구 불당동에 위치해 있습니다. 상세 주소는 예약 시 안내드립니다."
+                  }
+                }
+              ]
+            }),
+          }}
+        />
         <Script id="meta-pixel" strategy="afterInteractive">
           {`
             !function(f,b,e,v,n,t,s)
